@@ -1,17 +1,16 @@
 function sendAnswer(termX, termY) {
-  const req = new XMLHttpRequest(),
-    data = new FormData();
-
-  data.append('termX', termX);
-  data.append('termY', termY);
+  const req = new XMLHttpRequest();
 
   req.open('POST', '/answer');
+  req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   req.onload = function() {
-    console.log('ok!');
-  }
+    if (req.status !== 201) {
+      alert(`An error (${req.status}) occured.`);
+    }
+  };
 
-  req.send(data);
+  req.send(`termX=${termX}&termY=${termY}`);
 }
 
 
