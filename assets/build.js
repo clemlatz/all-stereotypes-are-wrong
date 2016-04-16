@@ -138,4 +138,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
   getQuestion();
 
-})
+});
