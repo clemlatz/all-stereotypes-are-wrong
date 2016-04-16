@@ -44,6 +44,8 @@ function renderTerms(terms) {
     <div class="term" id="termB">${termB}</div>
     <div class="term" id="term1">${term1}</div>
     <div class="term" id="term2">${term2}</div>
+    <div class="equal" id="equalLeft">=</div>
+    <div class="equal" id="equalRight">=</div>
   `;
 }
 
@@ -55,6 +57,7 @@ function addAnswer(terms, results, side) {
   const percent = Math.floor((chosenCount / totalCount) * 100);
   const success = (percent > 50);
   const result = success ? 'Well done' : 'Wrong';
+  const resultClass = success ? 'correct' : 'wrong';
   const googleTruth = `https://www.google.com/trends/explore#q=${terms[0]} ${terms[2]}, ${terms[0]} ${terms[3]}, ${terms[1]} ${terms[2]}, ${terms[1]} ${terms[3]}`;
   line.classList.add('line');
 
@@ -64,7 +67,7 @@ function addAnswer(terms, results, side) {
 
   line.innerHTML  = `<div class="round">${session.round}/10</div>`;
   line.innerHTML += `<div class="terms ${side}Choice">` + renderTerms(terms) + '</div>';
-  line.innerHTML += `<div class="score">
+  line.innerHTML += `<div class="score ${resultClass}">
     ${result}<br>
     Score: ${session.score}/${session.round}<br>
     On ${totalCount} players<br>
@@ -89,21 +92,9 @@ function getQuestion() {
       const term1 = json[1].firstTerm.en;
       const term2 = json[1].secondTerm.en;
 
-      const termsElement = document.querySelector('#terms');
+      const termsElement = document.querySelector('.current .terms');
 
       termsElement.innerHTML = renderTerms([termA, termB, term1, term2]);
-
-      const equalLeft = document.createElement('div');
-      equalLeft.id = 'equalLeft';
-      equalLeft.classList.add('equals');
-      equalLeft.innerHTML = '=';
-      termsElement.appendChild(equalLeft);
-
-      const equalRight = document.createElement('div');
-      equalRight.id = 'equalRight';
-      equalRight.classList.add('equals');
-      equalRight.innerHTML = '=';
-      termsElement.appendChild(equalRight);
 
       const leftZone = document.createElement('div');
       leftZone.id = 'leftZone';

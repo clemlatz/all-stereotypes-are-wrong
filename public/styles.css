@@ -1,7 +1,7 @@
 #main {
   font-family: sans-serif;
   margin: auto;
-  max-width: 560px;
+  max-width: 600px;
   text-align: center;
   text-transform: uppercase;
 }
@@ -12,11 +12,16 @@
 
 .line {
   align-items: center;
+  padding: 15px 0;
   display: flex;
 }
 
+#answers .line {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .round {
-  width: 100px;
+  width: 125px;
 }
 
 .terms {
@@ -29,10 +34,10 @@
 .score {
   font-size: .7em;
   text-transform: none;
-  width: 100px;
+  width: 125px;
 }
 
-.equals {
+.equal {
   animation: opacity 250ms;
   display: inline-block;
   position: absolute;
@@ -146,7 +151,7 @@
 
 .rightChoice #rightZone,
 .leftChoice #rightZone,
-.leftChoice .equals,
-.rightChoice .equals {
+.leftChoice .equal,
+.rightChoice .equal {
   opacity: .5;
 }
