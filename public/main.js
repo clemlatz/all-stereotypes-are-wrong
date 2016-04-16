@@ -1,3 +1,8 @@
+const session = {
+  round: 0,
+  score: 0
+}
+
 function sendAnswer(terms, side) {
 
   let [ termA, termB, term1, term2 ] = terms;
@@ -21,6 +26,7 @@ function sendAnswer(terms, side) {
     } else {
       const results = JSON.parse(req.response);
 
+      getQuestion();
       addAnswer(terms, results, side);
     }
   };
@@ -32,7 +38,7 @@ function sendAnswer(terms, side) {
 }
 
 function renderTerms(terms) {
-  let [ termA, termB, term1, term2 ] = terms;
+  const [ termA, termB, term1, term2 ] = terms;
   return `
     <div class="term" id="termA">${termA}</div>
     <div class="term" id="termB">${termB}</div>
@@ -52,11 +58,15 @@ function addAnswer(terms, results, side) {
   const googleTruth = `https://www.google.com/trends/explore#q=${terms[0]} ${terms[2]}, ${terms[0]} ${terms[3]}, ${terms[1]} ${terms[2]}, ${terms[1]} ${terms[3]}`;
   line.classList.add('line');
 
-  line.innerHTML  = '<div class="round">X/10</div>';
+  if (success) {
+    session.score++;
+  }
+
+  line.innerHTML  = `<div class="round">${session.round}/10</div>`;
   line.innerHTML += `<div class="terms ${side}Choice">` + renderTerms(terms) + '</div>';
   line.innerHTML += `<div class="score">
     ${result}<br>
-    Score: X/Y<br>
+    Score: ${session.score}/${session.round}<br>
     On ${totalCount} players<br>
     ${percent}% chose like you<br>
     &gt; <a href="${googleTruth}" target="_blank">The Google Truth</a>
@@ -65,12 +75,14 @@ function addAnswer(terms, results, side) {
   answers.insertBefore(line, answers.firstChild);
 }
 
-function displayQuestion() {
+function getQuestion() {
 
   fetch('/couples')
     .then(function(response) {
       return response.json();
     }).then(function(json) {
+
+      incrementRound();
 
       const termA = json[0].firstTerm.en;
       const termB = json[0].secondTerm.en;
@@ -78,18 +90,30 @@ function displayQuestion() {
       const term2 = json[1].secondTerm.en;
 
       const termsElement = document.querySelector('#terms');
-      const termAElement = document.querySelector('#termA');
-      const termBElement = document.querySelector('#termB');
-      const termBResult  = document.querySelector('#termB');
-      const term1Element = document.querySelector('#term1');
-      const term2Element = document.querySelector('#term2');
-      const leftZone     = document.querySelector('#leftZone');
-      const rightZone    = document.querySelector('#rightZone');
 
-      termAElement.innerHTML = termA;
-      termBElement.innerHTML = termB;
-      term1Element.innerHTML = term1;
-      term2Element.innerHTML = term2;
+      termsElement.innerHTML = renderTerms([termA, termB, term1, term2]);
+
+      const equalLeft = document.createElement('div');
+      equalLeft.id = 'equalLeft';
+      equalLeft.classList.add('equals');
+      equalLeft.innerHTML = '=';
+      termsElement.appendChild(equalLeft);
+
+      const equalRight = document.createElement('div');
+      equalRight.id = 'equalRight';
+      equalRight.classList.add('equals');
+      equalRight.innerHTML = '=';
+      termsElement.appendChild(equalRight);
+
+      const leftZone = document.createElement('div');
+      leftZone.id = 'leftZone';
+      leftZone.classList.add('zone');
+      termsElement.appendChild(leftZone);
+
+      const rightZone = document.createElement('div');
+      rightZone.id = 'rightZone';
+      rightZone.classList.add('zone');
+      termsElement.appendChild(rightZone);
 
       leftZone.addEventListener('mouseenter', function() {
         terms.classList.add('leftChoice');
@@ -113,8 +137,14 @@ function displayQuestion() {
     });
 }
 
+function incrementRound() {
+  const currentRound = document.querySelector('.current .round');
+  session.round++;
+  currentRound.innerHTML = `${session.round}/10`;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 
-  displayQuestion();
+  getQuestion();
 
 })
