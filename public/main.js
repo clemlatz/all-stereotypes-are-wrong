@@ -1,6 +1,6 @@
 function sendAnswer(terms, side) {
 
-  let [ termA, term1, termB, term2 ] = terms;
+  let [ termA, termB, term1, term2 ] = terms;
 
   if (side == 'left') {
     chosen = [termA, term1, termB, term2];
@@ -32,11 +32,12 @@ function sendAnswer(terms, side) {
 }
 
 function renderTerms(terms) {
+  const [ termA, termB, term1, term2 ] = terms;
   return `
-    <div class="term" id="termA">${terms[0]}</div>
-    <div class="term" id="termB">${terms[1]}</div>
-    <div class="term" id="term1">${terms[2]}</div>
-    <div class="term" id="term2">${terms[3]}</div>
+    <div class="term" id="termA">${termA}</div>
+    <div class="term" id="termB">${termB}</div>
+    <div class="term" id="term1">${term1}</div>
+    <div class="term" id="term2">${term2}</div>
   `;
 }
 
