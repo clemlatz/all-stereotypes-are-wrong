@@ -15,9 +15,9 @@ function sendAnswer(chosen, other) {
       let result;
 
       if (percent >= 50) {
-        result = `CORRECT (${Math.floor(percent)}%)`;
+        result = `CORRECT (${Math.floor(percent)}% of ${total} answers)`;
       } else {
-        result = `WRONG (${Math.floor(percent)}%)`;
+        result = `WRONG (${Math.floor(percent)}% of ${total} answers)`;
       }
 
       document.querySelector('#answer').textContent = result;
