@@ -7,6 +7,20 @@ function sendAnswer(chosen, other) {
   req.onload = function() {
     if (req.status !== 200) {
       alert(`An error (${req.status}) occured.`);
+    } else {
+      const results = JSON.parse(req.response),
+        chosen = parseInt(results.chosen),
+        total = parseInt(results.total),
+        percent = (chosen / total) * 100;
+      let result;
+
+      if (percent >= 50) {
+        result = `CORRECT (${Math.floor(percent)}%)`;
+      } else {
+        result = `WRONG (${Math.floor(percent)}%)`;
+      }
+
+      document.querySelector('#answer').textContent = result;
     }
   };
 

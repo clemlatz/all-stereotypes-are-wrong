@@ -11,6 +11,10 @@
   width: 300px;
 }
 
+#answer {
+  text-align: center;
+}
+
 /* TERMS DEFAULT */
 
 .term {

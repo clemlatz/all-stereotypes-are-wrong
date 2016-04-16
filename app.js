@@ -28,13 +28,6 @@ app.post('/answer', function(request, response) {
   const chosen = request.body.chosen;
   const other  = request.body.other;
 
-  console.log(chosen, other);
-
-  // if (!couples.termExists(termX, 'en') || !couples.termExists(termY, 'en')) {
-  //   res.status(400).send();
-  //   return;
-  // }
-
   Answer.findOne({ answer: chosen }, function(err, chosenAnswer) {
     if (err) throw err;
 
