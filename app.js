@@ -25,36 +25,51 @@ app.get('/couples', function(request, response) {
 });
 
 app.post('/answer', function(request, response) {
-  const termX = request.body.termX;
-  const termY = request.body.termY;
+  const chosen = request.body.chosen;
+  const other  = request.body.other;
 
-  if (!couples.termExists(termX, 'en') || !couples.termExists(termY, 'en')) {
-    res.status(400).send();
-    return;
-  }
+  console.log(chosen, other);
 
-  Answer.findOne({ termX: termX, termY: termY }, function(err, answer) {
-    if (err) {
-      response.status(500).send();
-      throw err;
-    }
+  // if (!couples.termExists(termX, 'en') || !couples.termExists(termY, 'en')) {
+  //   res.status(400).send();
+  //   return;
+  // }
 
-    if (!answer) {
-      answer = new Answer({
-        termX: termX,
-        termY: termY
+  Answer.findOne({ answer: chosen }, function(err, chosenAnswer) {
+    if (err) throw err;
+
+    if (!chosenAnswer) {
+      chosenAnswer = new Answer({
+        answer: chosen
       });
     }
 
-    answer.count = answer.count + 1;
+    chosenAnswer.count = chosenAnswer.count + 1;
+    chosenAnswer.total = chosenAnswer.total + 1;
 
-    answer.save(function(err) {
-      if (err) {
-        response.status(500).send();
-        throw err;
-      }
+    chosenAnswer.save(function(err) {
+      if (err) throw err;
 
-      response.status(200).json({ count: answer.count });
+      Answer.findOne({ answer: other }, function(err, otherAnswer) {
+        if (err) {
+          response.status(500).send();
+          throw err;
+        }
+
+        if (!otherAnswer) {
+          otherAnswer = new Answer({
+            answer: other
+          });
+        }
+
+        otherAnswer.total = otherAnswer.total + 1;
+
+        otherAnswer.save(function(err) {
+          if (err) throw err;
+
+          response.status(200).json({ chosen: chosenAnswer.count, other: otherAnswer.count, total: chosenAnswer.total });
+        });
+      });
     });
 
   });

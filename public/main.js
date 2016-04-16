@@ -1,4 +1,4 @@
-function sendAnswer(termX, termY) {
+function sendAnswer(chosen, other) {
   const req = new XMLHttpRequest();
 
   req.open('POST', '/answer');
@@ -10,7 +10,7 @@ function sendAnswer(termX, termY) {
     }
   };
 
-  req.send(`termX=${termX}&termY=${termY}`);
+  req.send(`chosen=${chosen}&other=${other}`);
 }
 
 function displayQuestion() {
@@ -53,12 +53,10 @@ function displayQuestion() {
       });
 
       leftZone.addEventListener('click', function() {
-        sendAnswer(termA, term1);
-        sendAnswer(termB, term2);
+        sendAnswer(`${termA}-${term1}-${termB}-${term2}`, `${termA}-${term2}-${termB}-${term1}`);
       });
       rightZone.addEventListener('click', function() {
-        sendAnswer(termA, term2);
-        sendAnswer(termB, term1);
+        sendAnswer(`${termA}-${term2}-${termB}-${term1}`, `${termA}-${term1}-${termB}-${term2}`);
       });
     });
 }
