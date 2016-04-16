@@ -7,6 +7,8 @@ const mongo_url = process.env.MONGO_URL || 'mongodb://localhost/asaw';
 
 const Answer = require('./models/answer');
 
+const couples = require('./data/couples');
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
@@ -16,12 +18,10 @@ process.stdout.write(`Mongoose connected to ${mongo_url}\n`);
 
 app.get('/couples', function(request, response) {
 
-  const couples = [
-    ['rich', 'poor'],
-    ['cat', 'dogs']
-  ];
+  const couple1 = couples.getRandom();
+  const couple2 = couples.getRandom(couple1);
 
-  response.json(couples);
+  response.json([couple1, couple2]);
 });
 
 app.post('/answer', function(request, response) {

@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
       return response.json();
     }).then(function(json) {
 
-      const termA = json[0][0];
-      const termB = json[0][1];
-      const term1 = json[1][0];
-      const term2 = json[1][1];
+      const termA = json[0].firstTerm.en;
+      const termB = json[0].secondTerm.en;
+      const term1 = json[1].firstTerm.en;
+      const term2 = json[1].secondTerm.en;
 
       const termsElement = document.querySelector('#terms');
       const termAElement = document.querySelector('#termA');
