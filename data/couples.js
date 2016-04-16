@@ -76,9 +76,9 @@ secondTerm = new Term('dumb', 'bête');
 couple = new Couple('smart-dumb', firstTerm, secondTerm, false, true);
 couples.addCouple(couple);
 
-firstTerm = new Term('kind', 'gentil');
+firstTerm = new Term('nice', 'gentil');
 secondTerm = new Term('mean', 'méchant');
-couple = new Couple('kind-mean', firstTerm, secondTerm, false, true);
+couple = new Couple('nice-mean', firstTerm, secondTerm, false, true);
 couples.addCouple(couple);
 
 firstTerm = new Term('leftist', 'de gauche');
@@ -230,5 +230,20 @@ firstTerm = new Term('liar', 'menteur');
 secondTerm = new Term('honest', 'honnête');
 couple = new Couple('liar-honest', firstTerm, secondTerm, false, true);
 couples.addCouple(couple);
+
+//firstTerm = new Term('liar', 'menteur');
+//secondTerm = new Term('honest', 'honnête');
+//couple = new Couple('liar-honest', firstTerm, secondTerm, false, true);
+//couples.addCouple(couple);
+
+//firstTerm = new Term('liar', 'menteur');
+//secondTerm = new Term('honest', 'honnête');
+//couple = new Couple('liar-honest', firstTerm, secondTerm, false, true);
+//couples.addCouple(couple);
+
+//firstTerm = new Term('liar', 'menteur');
+//secondTerm = new Term('honest', 'honnête');
+//couple = new Couple('liar-honest', firstTerm, secondTerm, false, true);
+//couples.addCouple(couple);
 
 module.exports = couples;
