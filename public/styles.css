@@ -1,0 +1,20 @@
+#main {
+  margin: auto;
+  max-width: 560px;
+  text-align: center;
+}
+
+.choices {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  margin: auto;
+  max-width: 360px;
+}
+
+.choice {
+  border: 1px solid grey;
+  cursor: pointer;
+  padding: 15px;
+}
