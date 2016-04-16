@@ -141,5 +141,65 @@ secondTerm = new Term('atheist', 'athée');
 couple = new Couple('believer-atheist', firstTerm, secondTerm, false, false);
 couples.addCouple(couple);
 
+firstTerm = new Term('fast', 'rapide');
+secondTerm = new Term('slow', 'lent');
+couple = new Couple('fast-slow', firstTerm, secondTerm, false, true);
+couples.addCouple(couple);
+
+firstTerm = new Term('beautiful', 'beau');
+secondTerm = new Term('ugly', 'moche');
+couple = new Couple('beautiful-ugly', firstTerm, secondTerm, false, true);
+couples.addCouple(couple);
+
+firstTerm = new Term('funny', 'drôle');
+secondTerm = new Term('serious', 'sérieux');
+couple = new Couple('funny-serious', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('lazy', 'paresseur');
+secondTerm = new Term('hard-worker', 'travailleur');
+couple = new Couple('lazy-hard-worker', firstTerm, secondTerm, false, true);
+couples.addCouple(couple);
+
+firstTerm = new Term('rich', 'riche');
+secondTerm = new Term('poor', 'pauvre');
+couple = new Couple('rich-poor', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('sick', 'malade');
+secondTerm = new Term('healthy', 'bien portant');
+couple = new Couple('sick-healthy', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('relaxed', 'relax');
+secondTerm = new Term('anxious', 'anxieux');
+couple = new Couple('relaxed-anxious', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('few', 'peu');
+secondTerm = new Term('many', 'nombreux');
+couple = new Couple('few-many', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('robot', 'robot');
+secondTerm = new Term('human', 'humain');
+couple = new Couple('robot-human', firstTerm, secondTerm, true, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('dangerous', 'dangereux');
+secondTerm = new Term('harmless', 'inofensif');
+couple = new Couple('dangerous-harmless', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('fragile', 'fragile');
+secondTerm = new Term('solid', 'solide');
+couple = new Couple('fragile-solid', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('fruit', 'fruit');
+secondTerm = new Term('vegetable', 'légume');
+couple = new Couple('funny-serious', firstTerm, secondTerm, true, false);
+couples.addCouple(couple);
+
 
 module.exports = couples;
