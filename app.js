@@ -16,6 +16,11 @@ app.get('/couples', function(request, response) {
   response.json(couples);
 });
 
+app.post('/answer', function(request, response) {
+
+  response.json('OK');
+});
+
 app.listen(port, function() {
   process.stdout.write(`ASAW server is listening on port ${port}`);
 })

@@ -1,3 +1,19 @@
+function sendAnswer(termX, termY) {
+  const req = new XMLHttpRequest(),
+    data = new FormData();
+
+  data.append('termX', termX);
+  data.append('termY', termY);
+
+  req.open('POST', '/answer');
+
+  req.onload = function() {
+    console.log('ok!');
+  }
+
+  req.send(data);
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -5,6 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(function(response) {
       return response.json();
     }).then(function(json) {
+
+      const termA = json[0][0];
+      const termB = json[0][1];
+      const term1 = json[1][0];
+      const term2 = json[1][1];
 
       const termsElement = document.querySelector('#terms');
       const termAElement = document.querySelector('#termA');
@@ -15,10 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const leftZone     = document.querySelector('#leftZone');
       const rightZone    = document.querySelector('#rightZone');
 
-      termAElement.innerHTML = json[0][0];
-      termBElement.innerHTML = json[0][1];
-      term1Element.innerHTML = json[1][0];
-      term2Element.innerHTML = json[1][1];
+      termAElement.innerHTML = termA;
+      termBElement.innerHTML = termB;
+      term1Element.innerHTML = term1;
+      term2Element.innerHTML = term2;
 
       leftZone.addEventListener('mouseenter', function() {
         terms.classList.add('leftChoice');
@@ -31,6 +52,15 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       rightZone.addEventListener('mouseleave', function() {
         terms.classList.remove('rightChoice');
+      });
+
+      leftZone.addEventListener('click', function() {
+        sendAnswer(termA, term1);
+        sendAnswer(termB, term2);
+      });
+      rightZone.addEventListener('click', function() {
+        sendAnswer(termA, term2);
+        sendAnswer(termB, term1);
       });
     })
 
