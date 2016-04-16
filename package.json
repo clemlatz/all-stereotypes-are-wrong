@@ -1,0 +1,22 @@
+{
+  "name": "all-stereotypes-are-wrong",
+  "version": "0.1.0",
+  "description": "A game about diversity",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iwazaru/all-stereotypes-are-wrong.git"
+  },
+  "author": "Clément Bourgoin <cb@nokto.net> (http://nokto.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iwazaru/all-stereotypes-are-wrong/issues"
+  },
+  "homepage": "https://github.com/iwazaru/all-stereotypes-are-wrong#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
