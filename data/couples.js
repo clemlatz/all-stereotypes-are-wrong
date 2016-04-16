@@ -157,7 +157,7 @@ couple = new Couple('funny-serious', firstTerm, secondTerm, false, false);
 couples.addCouple(couple);
 
 firstTerm = new Term('lazy', 'paresseur');
-secondTerm = new Term('hard-worker', 'travailleur');
+secondTerm = new Term('hard-working', 'travailleur');
 couple = new Couple('lazy-hard-worker', firstTerm, secondTerm, false, true);
 couples.addCouple(couple);
 
@@ -198,8 +198,37 @@ couples.addCouple(couple);
 
 firstTerm = new Term('fruit', 'fruit');
 secondTerm = new Term('vegetable', 'légume');
-couple = new Couple('funny-serious', firstTerm, secondTerm, true, false);
+couple = new Couple('fruit-vegetable', firstTerm, secondTerm, true, false);
 couples.addCouple(couple);
 
+firstTerm = new Term('scientific', 'scientifique');
+secondTerm = new Term('artist', 'artiste');
+couple = new Couple('scientific-artist', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('introverted', 'introverti');
+secondTerm = new Term('extraverted', 'extraverti');
+couple = new Couple('introverted-extraverted', firstTerm, secondTerm, true, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('hot', 'chaud');
+secondTerm = new Term('cold', 'froid');
+couple = new Couple('hot-cold', firstTerm, secondTerm, true, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('commited', 'impliqué');
+secondTerm = new Term('indifferent', 'indifférent');
+couple = new Couple('commited-indifferent', firstTerm, secondTerm, true, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('brave', 'coward');
+secondTerm = new Term('coward', 'lache');
+couple = new Couple('brave-coward', firstTerm, secondTerm, false, true);
+couples.addCouple(couple);
+
+firstTerm = new Term('liar', 'menteur');
+secondTerm = new Term('honest', 'honnête');
+couple = new Couple('liar-honest', firstTerm, secondTerm, false, true);
+couples.addCouple(couple);
 
 module.exports = couples;
