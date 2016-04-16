@@ -49,11 +49,18 @@ function addAnswer(terms, results, side) {
   const percent = Math.floor((chosenCount / totalCount) * 100);
   const success = (percent > 50);
   const result = success ? 'Well done' : 'Wrong';
+  const googleTruth = `https://www.google.com/trends/explore#q=${terms[0]} ${terms[2]}, ${terms[0]} ${terms[3]}, ${terms[1]} ${terms[2]}, ${terms[1]} ${terms[3]}`;
   line.classList.add('line');
 
   line.innerHTML  = '<div class="round">X/10</div>';
   line.innerHTML += `<div class="terms ${side}Choice">` + renderTerms(terms) + '</div>';
-  line.innerHTML += `<div class="score">${result}<br>Score: X/Y<br>On ${totalCount} players<br>${percent}% chose like you<br>&gt; The Google Truth</div>`;
+  line.innerHTML += `<div class="score">
+    ${result}<br>
+    Score: X/Y<br>
+    On ${totalCount} players<br>
+    ${percent}% chose like you<br>
+    &gt; <a href="${googleTruth}" target="_blank">The Google Truth</a>
+  </div>`;
 
   answers.insertBefore(line, answers.firstChild);
 }
