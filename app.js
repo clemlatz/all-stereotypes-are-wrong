@@ -1,7 +1,9 @@
-const express  = require('express');
-const mongoose = require('mongoose');
+const express    = require('express');
+const mongoose   = require('mongoose');
+const bodyParser = require('body-parser');
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const port      = process.env.PORT || 3000;
 const mongo_url = process.env.MONGO_URL || 'mongodb://localhost/asaw';
