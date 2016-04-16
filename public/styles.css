@@ -1,7 +1,9 @@
 #main {
+  font-family: sans-serif;
   margin: auto;
   max-width: 560px;
   text-align: center;
+  text-transform: uppercase;
 }
 
 #terms {
@@ -15,15 +17,32 @@
   text-align: center;
 }
 
+.equals {
+  animation: opacity 250ms;
+  display: inline-block;
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  width: 180px;
+}
+
+#equalLeft {
+  left: 0%;
+  transform: translateY(-50%);
+}
+
+#equalRight {
+  left: 100%;
+  transform: translate(-100%, -50%);
+}
+
 /* TERMS DEFAULT */
 
 .term {
   display: inline-block;
-  font-family: sans-serif;
-  padding: 10px 15px;
   position: absolute;
-  text-transform: uppercase;
   transition: 250ms;
+  width: 180px;
 }
 
 #termA {
@@ -104,5 +123,15 @@
 }
 
 #rightZone {
+  border-left: 1px solid black;
+  opacity: 0;
   right: 0;
+  transition: 250ms;
+}
+
+.rightChoice #rightZone,
+.leftChoice #rightZone,
+.leftChoice .equals,
+.rightChoice .equals {
+  opacity: .5;
 }
