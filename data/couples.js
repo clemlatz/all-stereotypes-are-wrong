@@ -5,10 +5,12 @@ const Term = function(en, fr) {
   this.fr = fr;
 };
 
-const Couple = function(id, firstTerm, secondTerm) {
+const Couple = function(id, firstTerm, secondTerm, wtf, polarized) {
   this.id = id;
   this.firstTerm = firstTerm;
   this.secondTerm = secondTerm;
+  this.wtf = wtf;
+  this.polarized = polarized;
 };
 Couple.prototype = {
   hasTerm: function(term, lang) {
@@ -51,12 +53,12 @@ let couple, firstTerm, secondTerm;
 
 firstTerm = new Term('man', 'homme');
 secondTerm = new Term('woman', 'femme');
-couple = new Couple('man-woman', firstTerm, secondTerm);
+couple = new Couple('man-woman', firstTerm, secondTerm, false, false);
 couples.addCouple(couple);
 
 firstTerm = new Term('dog', 'chien');
 secondTerm = new Term('cat', 'chat');
-couple = new Couple('dog-cat', firstTerm, secondTerm);
+couple = new Couple('dog-cat', firstTerm, secondTerm, true, false);
 couples.addCouple(couple);
 
 module.exports = couples;
