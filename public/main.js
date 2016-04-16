@@ -5,7 +5,7 @@ function sendAnswer(termX, termY) {
   req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   req.onload = function() {
-    if (req.status !== 201) {
+    if (req.status !== 200) {
       alert(`An error (${req.status}) occured.`);
     }
   };
@@ -13,8 +13,7 @@ function sendAnswer(termX, termY) {
   req.send(`termX=${termX}&termY=${termY}`);
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
+function displayQuestion() {
 
   fetch('/couples')
     .then(function(response) {
@@ -61,6 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
         sendAnswer(termA, term2);
         sendAnswer(termB, term1);
       });
-    })
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  displayQuestion();
 
 })

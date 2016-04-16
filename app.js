@@ -33,17 +33,30 @@ app.post('/answer', function(request, response) {
     return;
   }
 
-  const answer = new Answer({
-    termX: termX,
-    termY: termY
-  });
-
-  answer.save(function(err) {
+  Answer.findOne({ termX: termX, termY: termY }, function(err, answer) {
     if (err) {
       response.status(500).send();
       throw err;
     }
-    response.status(201).send();
+
+    if (!answer) {
+      answer = new Answer({
+        termX: termX,
+        termY: termY
+      });
+    }
+
+    answer.count = answer.count + 1;
+
+    answer.save(function(err) {
+      if (err) {
+        response.status(500).send();
+        throw err;
+      }
+
+      response.status(200).json({ count: answer.count });
+    });
+
   });
 });
 
