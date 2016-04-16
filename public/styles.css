@@ -8,7 +8,7 @@
   height: 200px;
   margin: auto;
   position: relative;
-  width: 300px;
+  width: 360px;
 }
 
 #answer {
@@ -54,44 +54,44 @@
 
 #terms.leftChoice #termA {
   left: 0;
-  top: 33%;
+  top: 40%;
   transform: translateY(-50%);
 }
 
 #terms.leftChoice #term1 {
-  top: 66%;
+  top: 60%;
 }
 
 #terms.leftChoice #termB {
   left: 100%;
-  top: 33%;
+  top: 40%;
   transform: translate(-100%, -50%);
 }
 
 #terms.leftChoice #term2 {
-  top: 66%;
+  top: 60%;
 }
 
 /* RIGHT CHOICE */
 
 #terms.rightChoice #termA {
   left: 100%;
-  top: 33%;
+  top: 40%;
   transform: translate(-100%, -50%);
 }
 
 #terms.rightChoice #term1 {
-  top: 66%;
+  top: 60%;
 }
 
 #terms.rightChoice #termB {
   left: 0%;
-  top: 33%;
+  top: 40%;
   transform: translateY(-50%);
 }
 
 #terms.rightChoice #term2 {
-  top: 66%;
+  top: 60%;
 }
 
 /* CLICK ZONES */
