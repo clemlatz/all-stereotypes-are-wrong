@@ -66,4 +66,20 @@ secondTerm = new Term('straight', 'hétéro');
 couple = new Couple('gay-straight', firstTerm, secondTerm, false, false);
 couples.addCouple(couple);
 
+firstTerm = new Term('black', 'noir');
+secondTerm = new Term('white', 'blanc');
+couple = new Couple('black-white', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('leftist', 'de gauche');
+secondTerm = new Term('rightist', 'de droite');
+couple = new Couple('leftist-rightist', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('vegeterian', 'végétarien');
+secondTerm = new Term('meat-eater', 'omnivore');
+couple = new Couple('vegetarian-meat-eater', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+
 module.exports = couples;
