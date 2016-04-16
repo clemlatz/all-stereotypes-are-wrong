@@ -1,4 +1,15 @@
-function sendAnswer(chosen, other) {
+function sendAnswer(terms, side) {
+
+  let [ termA, term1, termB, term2 ] = terms;
+
+  if (side == 'left') {
+    chosen = [termA, term1, termB, term2];
+    other  = [termA, term2, termB, term1];
+  } else {
+    chosen = [termA, term2, termB, term1];
+    other  = [termA, term1, termB, term2];
+  }
+
   const req = new XMLHttpRequest();
 
   req.open('POST', '/answer');
@@ -8,23 +19,42 @@ function sendAnswer(chosen, other) {
     if (req.status !== 200) {
       alert(`An error (${req.status}) occured.`);
     } else {
-      const results = JSON.parse(req.response),
-        chosen = parseInt(results.chosen),
-        total = parseInt(results.total),
-        percent = (chosen / total) * 100;
-      let result;
+      const results = JSON.parse(req.response);
 
-      if (percent >= 50) {
-        result = `CORRECT (${Math.floor(percent)}% of ${total} answers)`;
-      } else {
-        result = `WRONG (${Math.floor(percent)}% of ${total} answers)`;
-      }
-
-      document.querySelector('#answer').textContent = result;
+      addAnswer(chosen, results, side);
     }
   };
 
-  req.send(`chosen=${chosen}&other=${other}`);
+  const chosenAnswer = chosen.join('-');
+  const otherAnswer  = other.join('-');
+
+  req.send(`chosen=${chosenAnswer}&other=${otherAnswer}`);
+}
+
+function renderTerms(terms) {
+  return `
+    <div class="term" id="termA">${terms[0]}</div>
+    <div class="term" id="termB">${terms[1]}</div>
+    <div class="term" id="term1">${terms[2]}</div>
+    <div class="term" id="term2">${terms[3]}</div>
+  `;
+}
+
+function addAnswer(chosen, results, side) {
+  const answers = document.querySelector('#answers');
+  const line = document.createElement('div');
+  const chosenCount = parseInt(results.chosen);
+  const totalCount = parseInt(results.total);
+  const percent = Math.floor((chosenCount / totalCount) * 100);
+  const success = (percent > 50);
+  const result = success ? 'Well done' : 'Wrong';
+  line.classList.add('line');
+
+  line.innerHTML  = '<div class="round">X/10</div>';
+  line.innerHTML += `<div class="terms ${side}Choice">` + renderTerms(chosen) + '</div>';
+  line.innerHTML += `<div class="score">${result}<br>Score: X/Y<br>On ${totalCount} players<br>${percent}% chose like you<br>&gt; The Google Truth</div>`;
+
+  answers.insertBefore(line, answers.firstChild);
 }
 
 function displayQuestion() {
@@ -67,10 +97,10 @@ function displayQuestion() {
       });
 
       leftZone.addEventListener('click', function() {
-        sendAnswer(`${termA}-${term1}-${termB}-${term2}`, `${termA}-${term2}-${termB}-${term1}`);
+        sendAnswer([termA, termB, term1, term2], 'left');
       });
       rightZone.addEventListener('click', function() {
-        sendAnswer(`${termA}-${term2}-${termB}-${term1}`, `${termA}-${term1}-${termB}-${term2}`);
+        sendAnswer([termA, termB, term1, term2], 'right');
       });
     });
 }

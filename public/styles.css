@@ -6,15 +6,30 @@
   text-transform: uppercase;
 }
 
-#terms {
-  height: 200px;
+#tagline {
+  margin-bottom: 50px;
+}
+
+.line {
+  align-items: center;
+  display: flex;
+}
+
+.round {
+  width: 100px;
+}
+
+.terms {
+  height: 125px;
   margin: auto;
   position: relative;
   width: 360px;
 }
 
-#answer {
-  text-align: center;
+.score {
+  font-size: .7em;
+  text-transform: none;
+  width: 100px;
 }
 
 .equals {
@@ -71,45 +86,45 @@
 
 /* LEFT CHOICE */
 
-#terms.leftChoice #termA {
+.terms.leftChoice #termA {
   left: 0;
   top: 40%;
   transform: translateY(-50%);
 }
 
-#terms.leftChoice #term1 {
+.terms.leftChoice #term1 {
   top: 60%;
 }
 
-#terms.leftChoice #termB {
+.terms.leftChoice #termB {
   left: 100%;
   top: 40%;
   transform: translate(-100%, -50%);
 }
 
-#terms.leftChoice #term2 {
+.terms.leftChoice #term2 {
   top: 60%;
 }
 
 /* RIGHT CHOICE */
 
-#terms.rightChoice #termA {
+.terms.rightChoice #termA {
   left: 100%;
   top: 40%;
   transform: translate(-100%, -50%);
 }
 
-#terms.rightChoice #term1 {
+.terms.rightChoice #term1 {
   top: 60%;
 }
 
-#terms.rightChoice #termB {
+.terms.rightChoice #termB {
   left: 0%;
   top: 40%;
   transform: translateY(-50%);
 }
 
-#terms.rightChoice #term2 {
+.terms.rightChoice #term2 {
   top: 60%;
 }
 
