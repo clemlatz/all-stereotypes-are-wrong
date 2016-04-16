@@ -5,7 +5,6 @@
 }
 
 #terms {
-  /*border: 1px solid grey;*/
   height: 200px;
   margin: auto;
   position: relative;
@@ -16,10 +15,10 @@
 
 .term {
   display: inline-block;
-  /*border: 1px solid grey;*/
+  font-family: sans-serif;
   padding: 10px 15px;
   position: absolute;
-  text-transform: capitalize;
+  text-transform: uppercase;
   transition: 250ms;
 }
 
