@@ -16,5 +16,5 @@
 .choice {
   border: 1px solid grey;
   cursor: pointer;
-  padding: 15px;
+  padding: 10px 15px;
 }
