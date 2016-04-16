@@ -28,6 +28,11 @@ app.post('/answer', function(request, response) {
   const termX = request.body.termX;
   const termY = request.body.termY;
 
+  if (!couples.termExists(termX, 'en') || !couples.termExists(termY, 'en')) {
+    res.status(400).send();
+    return;
+  }
+
   const answer = new Answer({
     termX: termX,
     termY: termY

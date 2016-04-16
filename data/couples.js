@@ -10,6 +10,17 @@ const Couple = function(id, firstTerm, secondTerm) {
   this.firstTerm = firstTerm;
   this.secondTerm = secondTerm;
 };
+Couple.prototype = {
+  hasTerm: function(term, lang) {
+    if (this.firstTerm[lang] === term) {
+      return true;
+    }
+    if (this.secondTerm[lang] === term) {
+      return true;
+    }
+    return false;
+  }
+};
 
 const CoupleManager = function() {
   this.couples = [];
@@ -24,6 +35,14 @@ CoupleManager.prototype = {
       couple = this.getRandom(ignoredCouple);
     }
     return couple;
+  },
+  termExists: function(term, lang) {
+    for (var i = 0, c = this.couples.length; i < c; i++) {
+      if (this.couples[i].hasTerm(term, lang)) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 const couples = new CoupleManager();
