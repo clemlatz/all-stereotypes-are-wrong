@@ -21,7 +21,7 @@ function sendAnswer(terms, side) {
     } else {
       const results = JSON.parse(req.response);
 
-      addAnswer(chosen, results, side);
+      addAnswer(terms, results, side);
     }
   };
 
@@ -32,7 +32,7 @@ function sendAnswer(terms, side) {
 }
 
 function renderTerms(terms) {
-  const [ termA, termB, term1, term2 ] = terms;
+  let [ termA, termB, term1, term2 ] = terms;
   return `
     <div class="term" id="termA">${termA}</div>
     <div class="term" id="termB">${termB}</div>
@@ -41,7 +41,7 @@ function renderTerms(terms) {
   `;
 }
 
-function addAnswer(chosen, results, side) {
+function addAnswer(terms, results, side) {
   const answers = document.querySelector('#answers');
   const line = document.createElement('div');
   const chosenCount = parseInt(results.chosen);
@@ -52,7 +52,7 @@ function addAnswer(chosen, results, side) {
   line.classList.add('line');
 
   line.innerHTML  = '<div class="round">X/10</div>';
-  line.innerHTML += `<div class="terms ${side}Choice">` + renderTerms(chosen) + '</div>';
+  line.innerHTML += `<div class="terms ${side}Choice">` + renderTerms(terms) + '</div>';
   line.innerHTML += `<div class="score">${result}<br>Score: X/Y<br>On ${totalCount} players<br>${percent}% chose like you<br>&gt; The Google Truth</div>`;
 
   answers.insertBefore(line, answers.firstChild);
