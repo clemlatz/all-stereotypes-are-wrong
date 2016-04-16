@@ -6,6 +6,7 @@ const session = {
 function sendAnswer(terms, side) {
 
   let [ termA, termB, term1, term2 ] = terms;
+  let chosen, other;
 
   if (side == 'left') {
     chosen = [termA, term1, termB, term2];

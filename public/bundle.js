@@ -61,6 +61,8 @@
 	  var term1 = _terms[2];
 	  var term2 = _terms[3];
 
+	  var chosen = void 0,
+	      other = void 0;
 
 	  if (side == 'left') {
 	    chosen = [termA, term1, termB, term2];
