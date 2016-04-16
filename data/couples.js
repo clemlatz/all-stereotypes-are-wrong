@@ -61,4 +61,9 @@ secondTerm = new Term('cat', 'chat');
 couple = new Couple('dog-cat', firstTerm, secondTerm, true, false);
 couples.addCouple(couple);
 
+firstTerm = new Term('gay', 'gay');
+secondTerm = new Term('straight', 'hétéro');
+couple = new Couple('gay-straight', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
 module.exports = couples;
