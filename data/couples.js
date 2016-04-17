@@ -81,8 +81,8 @@ couples.addCouple(couple);
 // couple = new Couple('nice-mean', firstTerm, secondTerm, false, true);
 // couples.addCouple(couple);
 //
-firstTerm = new Term('leftist', 'de gauche');
-secondTerm = new Term('rightist', 'de droite');
+firstTerm = new Term('vote left', 'de gauche');
+secondTerm = new Term('vote right', 'de droite');
 couple = new Couple('leftist-rightist', firstTerm, secondTerm, false, false);
 couples.addCouple(couple);
 //
