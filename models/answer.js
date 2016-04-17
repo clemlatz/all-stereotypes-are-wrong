@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const AnswerSchema = mongoose.Schema({
   answer: String,
+  combination: String,
   count: {
     type: Number,
     default: 0
@@ -12,7 +13,7 @@ const AnswerSchema = mongoose.Schema({
     default: 0
   },
 }, {
-  versionKey: '2'
+  versionKey: '3'
 });
 
 const Answer = mongoose.model('Answer', AnswerSchema);
