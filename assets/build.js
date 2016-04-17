@@ -27,7 +27,6 @@ function sendAnswer(terms, side, couple1, couple2) {
     } else {
       const results = JSON.parse(req.response);
 
-      getQuestion();
       addAnswer(terms, results, side);
     }
   });
@@ -53,6 +52,7 @@ function renderTerms(terms) {
 
 function addAnswer(terms, results, side) {
   const answers = document.querySelector('#answers');
+  const currentLine = document.querySelector('.current.line');
   const line = document.createElement('div');
   const count = parseInt(results.count);
   const total = parseInt(results.total);
@@ -62,6 +62,9 @@ function addAnswer(terms, results, side) {
   const resultClass = success ? 'correct' : 'wrong';
   const googleTruth = `https://www.google.com/trends/explore#q=${terms[0]} ${terms[2]}, ${terms[0]} ${terms[3]}, ${terms[1]} ${terms[2]}, ${terms[1]} ${terms[3]}`;
   line.classList.add('line');
+
+  currentLine.style.marginTop = '-155px';
+  // current.style.transition = 'margin 1s';
 
   if (success) {
     session.score++;
@@ -78,6 +81,11 @@ function addAnswer(terms, results, side) {
   </div>`;
 
   answers.insertBefore(line, answers.firstChild);
+
+  window.setTimeout(function () {
+    currentLine.classList.add('animated');
+    getQuestion();
+  });
 }
 
 function getQuestion() {
@@ -96,7 +104,8 @@ function getQuestion() {
       const term1 = json[1].firstTerm.en;
       const term2 = json[1].secondTerm.en;
 
-      const termsElement = document.querySelector('.current .terms');
+      const currentLine = document.querySelector('.current.line');
+      const termsElement = currentLine.querySelector('.terms');
 
       termsElement.innerHTML = renderTerms([termA, termB, term1, term2]);
 
@@ -129,6 +138,11 @@ function getQuestion() {
       rightZone.addEventListener('click', function() {
         sendAnswer([termA, termB, term1, term2], 'right', couple1, couple2);
       });
+
+      currentLine.style.marginTop = 0;
+      window.setTimeout(function() {
+        currentLine.classList.remove('animated');
+      }, 1000)
     });
 }
 

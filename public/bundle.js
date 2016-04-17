@@ -83,7 +83,6 @@
 	    } else {
 	      var results = JSON.parse(req.response);
 
-	      getQuestion();
 	      addAnswer(terms, results, side);
 	    }
 	  });
@@ -108,6 +107,7 @@
 
 	function addAnswer(terms, results, side) {
 	  var answers = document.querySelector('#answers');
+	  var currentLine = document.querySelector('.current.line');
 	  var line = document.createElement('div');
 	  var count = parseInt(results.count);
 	  var total = parseInt(results.total);
@@ -118,6 +118,9 @@
 	  var googleTruth = 'https://www.google.com/trends/explore#q=' + terms[0] + ' ' + terms[2] + ', ' + terms[0] + ' ' + terms[3] + ', ' + terms[1] + ' ' + terms[2] + ', ' + terms[1] + ' ' + terms[3];
 	  line.classList.add('line');
 
+	  currentLine.style.marginTop = '-155px';
+	  // current.style.transition = 'margin 1s';
+
 	  if (success) {
 	    session.score++;
 	  }
@@ -127,6 +130,11 @@
 	  line.innerHTML += '<div class="score ' + resultClass + '">\n    ' + result + '<br>\n    Score: ' + session.score + '/' + session.round + '<br>\n    On ' + total + ' players<br>\n    ' + percent + '% chose like you<br>\n    &gt; <a href="' + googleTruth + '" target="_blank">The Google Truth</a>\n  </div>';
 
 	  answers.insertBefore(line, answers.firstChild);
+
+	  window.setTimeout(function () {
+	    currentLine.classList.add('animated');
+	    getQuestion();
+	  });
 	}
 
 	function getQuestion() {
@@ -144,7 +152,8 @@
 	    var term1 = json[1].firstTerm.en;
 	    var term2 = json[1].secondTerm.en;
 
-	    var termsElement = document.querySelector('.current .terms');
+	    var currentLine = document.querySelector('.current.line');
+	    var termsElement = currentLine.querySelector('.terms');
 
 	    termsElement.innerHTML = renderTerms([termA, termB, term1, term2]);
 
@@ -177,6 +186,11 @@
 	    rightZone.addEventListener('click', function () {
 	      sendAnswer([termA, termB, term1, term2], 'right', couple1, couple2);
 	    });
+
+	    currentLine.style.marginTop = 0;
+	    window.setTimeout(function () {
+	      currentLine.classList.remove('animated');
+	    }, 1000);
 	  });
 	}
 
