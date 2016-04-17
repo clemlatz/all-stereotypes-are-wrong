@@ -119,7 +119,6 @@
 	  line.classList.add('line');
 
 	  currentLine.style.marginTop = '-155px';
-	  // current.style.transition = 'margin 1s';
 
 	  if (success) {
 	    session.score++;
