@@ -3,6 +3,16 @@ const session = {
   score: 0
 }
 
+function getStats() {
+  fetch('/stats')
+    .then(function(response) {
+      return response.json();
+    }).then(function(json) {
+      const counter = document.querySelector('#stats .count');
+      counter.innerHTML = json.total;
+    });
+}
+
 function sendAnswer(terms, side, couple1, couple2) {
 
   let [ termA, termB, term1, term2 ] = terms;
@@ -81,6 +91,8 @@ function addAnswer(terms, results, side) {
 
   answers.insertBefore(line, answers.firstChild);
 
+  getStats();
+
   window.setTimeout(function () {
     currentLine.classList.add('animated');
     getQuestion();
@@ -154,5 +166,6 @@ function incrementRound() {
 document.addEventListener('DOMContentLoaded', function() {
 
   getQuestion();
+  getStats();
 
 });

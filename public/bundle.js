@@ -53,6 +53,15 @@
 	  score: 0
 	};
 
+	function getStats() {
+	  fetch('/stats').then(function (response) {
+	    return response.json();
+	  }).then(function (json) {
+	    var counter = document.querySelector('#stats .count');
+	    counter.innerHTML = json.total;
+	  });
+	}
+
 	function sendAnswer(terms, side, couple1, couple2) {
 	  var _terms = _slicedToArray(terms, 4);
 
@@ -130,6 +139,8 @@
 
 	  answers.insertBefore(line, answers.firstChild);
 
+	  getStats();
+
 	  window.setTimeout(function () {
 	    currentLine.classList.add('animated');
 	    getQuestion();
@@ -202,6 +213,7 @@
 	document.addEventListener('DOMContentLoaded', function () {
 
 	  getQuestion();
+	  getStats();
 	});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
