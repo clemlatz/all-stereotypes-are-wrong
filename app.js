@@ -25,44 +25,50 @@ app.get('/couples', function(request, response) {
 });
 
 app.post('/answer', function(request, response) {
-  const chosen = request.body.chosen;
-  const other  = request.body.other;
+  const association1 = request.body.association1.split(',').sort().join(',');
+  const association2 = request.body.association2.split(',').sort().join(',');
+  const couple1      = request.body.couple1;
+  const couple2      = request.body.couple2;
 
-  Answer.findOne({ answer: chosen }, function(err, chosenAnswer) {
+  const combinationContent = [couple1, couple2].sort().join();
+  const answerContent = [association1, association2].sort().join(';');
+
+  Answer.findOne({ answer: answerContent }, function(err, answer) {
     if (err) throw err;
 
-    if (!chosenAnswer) {
-      chosenAnswer = new Answer({
-        answer: chosen
+    if (!answer) {
+      answer = new Answer({
+        answer: answerContent,
+        combination: combinationContent
       });
     }
 
-    chosenAnswer.count = chosenAnswer.count + 1;
-    chosenAnswer.total = chosenAnswer.total + 1;
+    answer.count = answer.count + 1;
 
-    chosenAnswer.save(function(err) {
+    answer.save(function(err) {
       if (err) throw err;
 
-      Answer.findOne({ answer: other }, function(err, otherAnswer) {
-        if (err) {
-          response.status(500).send();
-          throw err;
-        }
+      // // Answer.findOne({ answer: other }, function(err, otherAnswer) {
+      // //   if (err) {
+      // //     response.status(500).send();
+      // //     throw err;
+      // //   }
+      // //
+      // //   if (!otherAnswer) {
+      // //     otherAnswer = new Answer({
+      // //       answer: other,
+      // //       combination: combination
+      // //     });
+      // //   }
+      //
+      //   otherAnswer.total = otherAnswer.total + 1;
+      //
+      //   otherAnswer.save(function(err) {
+      //     if (err) throw err;
 
-        if (!otherAnswer) {
-          otherAnswer = new Answer({
-            answer: other
-          });
-        }
-
-        otherAnswer.total = otherAnswer.total + 1;
-
-        otherAnswer.save(function(err) {
-          if (err) throw err;
-
-          response.status(200).json({ chosen: chosenAnswer.count, other: otherAnswer.count, total: chosenAnswer.total });
-        });
-      });
+          response.status(200).json({ count: answer.count, other: 0, total: 0 });
+      //   });
+      // });
     });
 
   });

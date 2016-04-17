@@ -3,23 +3,23 @@ const session = {
   score: 0
 }
 
-function sendAnswer(terms, side) {
+function sendAnswer(terms, side, couple1, couple2) {
 
   let [ termA, termB, term1, term2 ] = terms;
-  let chosen, other;
+  let association1, association2;
 
   if (side == 'left') {
-    chosen = [termA, term1, termB, term2];
-    other  = [termA, term2, termB, term1];
+    association1 = [termA, term1];
+    association2 = [termB, term2];
   } else {
-    chosen = [termA, term2, termB, term1];
-    other  = [termA, term1, termB, term2];
+    association1 = [termA, term2];
+    association2 = [termB, term1];
   }
 
   const req = new XMLHttpRequest();
 
   req.open('POST', '/answer');
-  req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
   req.onload = function() {
     if (req.status !== 200) {
@@ -32,10 +32,7 @@ function sendAnswer(terms, side) {
     }
   };
 
-  const chosenAnswer = chosen.join('-');
-  const otherAnswer  = other.join('-');
-
-  req.send(`chosen=${chosenAnswer}&other=${otherAnswer}`);
+  req.send(`association1=${association1}&association2=${association2}&couple1=${couple1}&couple2=${couple2}`);
 }
 
 function renderTerms(terms) {
@@ -88,8 +85,10 @@ function getQuestion() {
 
       incrementRound();
 
+      const couple1 = json[0].id;
       const termA = json[0].firstTerm.en;
       const termB = json[0].secondTerm.en;
+      const couple2 = json[1].id;
       const term1 = json[1].firstTerm.en;
       const term2 = json[1].secondTerm.en;
 
@@ -121,10 +120,10 @@ function getQuestion() {
       });
 
       leftZone.addEventListener('click', function() {
-        sendAnswer([termA, termB, term1, term2], 'left');
+        sendAnswer([termA, termB, term1, term2], 'left', couple1, couple2);
       });
       rightZone.addEventListener('click', function() {
-        sendAnswer([termA, termB, term1, term2], 'right');
+        sendAnswer([termA, termB, term1, term2], 'right', couple1, couple2);
       });
     });
 }
