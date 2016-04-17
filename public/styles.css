@@ -21,6 +21,13 @@ body {
   z-index: 10;
 }
 
+#stats {
+  left: 0;
+  position: fixed;
+  padding: 3px 6px;
+  top: 0;
+}
+
 #social {
   font-size: 1.5em;
   opacity: .5;

@@ -1,3 +1,5 @@
+'use strict';
+
 const express    = require('express');
 const mongoose   = require('mongoose');
 const bodyParser = require('body-parser');
@@ -23,6 +25,17 @@ app.get('/couples', function(request, response) {
   const couple2 = couples.getRandom(couple1);
 
   response.json([couple1, couple2]);
+});
+
+app.get('/stats', function(request, response) {
+  Combination.find({}, function(err, combinations) {
+    if (err) throw err;
+    let total = 0;
+    for (let i = 0, c = combinations.length; i < c; i++) {
+      total += combinations[i].count;
+    }
+    response.json({ total: total });
+  });
 });
 
 app.post('/answer', function(request, response) {
