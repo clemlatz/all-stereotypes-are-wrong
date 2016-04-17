@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Berkshire+Swash);
+
 body {
   margin: 0;
   padding: 0;
@@ -20,10 +22,13 @@ body {
 
 h1 {
   margin-top: 0;
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 3em;
+  text-transform: none;
 }
 
 #tagline {
-  margin-top: 40px;
+  margin-top: 30px;
   margin-bottom: 10px;
 }
 
