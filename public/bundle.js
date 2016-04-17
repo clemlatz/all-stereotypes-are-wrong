@@ -109,9 +109,9 @@
 	function addAnswer(terms, results, side) {
 	  var answers = document.querySelector('#answers');
 	  var line = document.createElement('div');
-	  var chosenCount = parseInt(results.chosen);
-	  var totalCount = parseInt(results.total);
-	  var percent = Math.floor(chosenCount / totalCount * 100);
+	  var count = parseInt(results.count);
+	  var total = parseInt(results.total);
+	  var percent = Math.floor(count / total * 100);
 	  var success = percent > 50;
 	  var result = success ? 'Well done' : 'Wrong';
 	  var resultClass = success ? 'correct' : 'wrong';
@@ -124,7 +124,7 @@
 
 	  line.innerHTML = '<div class="round">' + session.round + '/10</div>';
 	  line.innerHTML += '<div class="terms ' + side + 'Choice">' + renderTerms(terms) + '</div>';
-	  line.innerHTML += '<div class="score ' + resultClass + '">\n    ' + result + '<br>\n    Score: ' + session.score + '/' + session.round + '<br>\n    On ' + totalCount + ' players<br>\n    ' + percent + '% chose like you<br>\n    &gt; <a href="' + googleTruth + '" target="_blank">The Google Truth</a>\n  </div>';
+	  line.innerHTML += '<div class="score ' + resultClass + '">\n    ' + result + '<br>\n    Score: ' + session.score + '/' + session.round + '<br>\n    On ' + count + ' players<br>\n    ' + percent + '% chose like you<br>\n    &gt; <a href="' + googleTruth + '" target="_blank">The Google Truth</a>\n  </div>';
 
 	  answers.insertBefore(line, answers.firstChild);
 	}

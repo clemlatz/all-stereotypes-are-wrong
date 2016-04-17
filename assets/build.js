@@ -54,9 +54,9 @@ function renderTerms(terms) {
 function addAnswer(terms, results, side) {
   const answers = document.querySelector('#answers');
   const line = document.createElement('div');
-  const chosenCount = parseInt(results.chosen);
-  const totalCount = parseInt(results.total);
-  const percent = Math.floor((chosenCount / totalCount) * 100);
+  const count = parseInt(results.count);
+  const total = parseInt(results.total);
+  const percent = Math.floor((count / total) * 100);
   const success = (percent > 50);
   const result = success ? 'Well done' : 'Wrong';
   const resultClass = success ? 'correct' : 'wrong';
@@ -72,7 +72,7 @@ function addAnswer(terms, results, side) {
   line.innerHTML += `<div class="score ${resultClass}">
     ${result}<br>
     Score: ${session.score}/${session.round}<br>
-    On ${totalCount} players<br>
+    On ${count} players<br>
     ${percent}% chose like you<br>
     &gt; <a href="${googleTruth}" target="_blank">The Google Truth</a>
   </div>`;

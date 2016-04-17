@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const port      = process.env.PORT || 3000;
 const mongo_url = process.env.MONGO_URL || 'mongodb://localhost/asaw';
 
-const Answer = require('./models/answer');
+const Answer      = require('./models/answer');
+const Combination = require('./models/combination');
 
 const couples = require('./data/couples');
 
@@ -31,7 +32,7 @@ app.post('/answer', function(request, response) {
   const couple2      = request.body.couple2;
 
   const combinationContent = [couple1, couple2].sort().join();
-  const answerContent = [association1, association2].sort().join(';');
+  const answerContent      = [association1, association2].sort().join(';');
 
   Answer.findOne({ answer: answerContent }, function(err, answer) {
     if (err) throw err;
@@ -48,27 +49,23 @@ app.post('/answer', function(request, response) {
     answer.save(function(err) {
       if (err) throw err;
 
-      // // Answer.findOne({ answer: other }, function(err, otherAnswer) {
-      // //   if (err) {
-      // //     response.status(500).send();
-      // //     throw err;
-      // //   }
-      // //
-      // //   if (!otherAnswer) {
-      // //     otherAnswer = new Answer({
-      // //       answer: other,
-      // //       combination: combination
-      // //     });
-      // //   }
-      //
-      //   otherAnswer.total = otherAnswer.total + 1;
-      //
-      //   otherAnswer.save(function(err) {
-      //     if (err) throw err;
+      Combination.findOne({ combination: combinationContent }, function(err, combination) {
+        if (err) throw err;
 
-          response.status(200).json({ count: answer.count, other: 0, total: 0 });
-      //   });
-      // });
+        if (!combination) {
+          combination = new Combination({
+            combination: combinationContent
+          });
+        }
+
+        combination.count = combination.count + 1;
+
+        combination.save(function(err) {
+          if (err) throw err;
+
+          response.status(200).json({ count: answer.count, total: combination.count });
+        });
+      });
     });
 
   });
