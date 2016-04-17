@@ -18,6 +18,7 @@ $ npm install
 
 ## Todo
 
+* Header with stats
 * Charts results
 * End of game
 * French version
