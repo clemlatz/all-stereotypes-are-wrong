@@ -81,10 +81,10 @@ couples.addCouple(couple);
 // couple = new Couple('nice-mean', firstTerm, secondTerm, false, true);
 // couples.addCouple(couple);
 //
-// firstTerm = new Term('leftist', 'de gauche');
-// secondTerm = new Term('rightist', 'de droite');
-// couple = new Couple('leftist-rightist', firstTerm, secondTerm, false, false);
-// couples.addCouple(couple);
+firstTerm = new Term('leftist', 'de gauche');
+secondTerm = new Term('rightist', 'de droite');
+couple = new Couple('leftist-rightist', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
 //
 // firstTerm = new Term('vulgar', 'vulgaire');
 // secondTerm = new Term('refined', 'raffiné');
@@ -116,10 +116,10 @@ secondTerm = new Term('hairy', 'poilu');
 couple = new Couple('shaved-hairy', firstTerm, secondTerm, true, false);
 couples.addCouple(couple);
 
-// firstTerm = new Term('happy', 'heureux');
-// secondTerm = new Term('sad', 'malheureux');
-// couple = new Couple('happy-sad', firstTerm, secondTerm, false, false);
-// couples.addCouple(couple);
+firstTerm = new Term('happy', 'heureux');
+secondTerm = new Term('sad', 'malheureux');
+couple = new Couple('happy-sad', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
 //
 // firstTerm = new Term('tall', 'grand');
 // secondTerm = new Term('small', 'petit');
@@ -141,10 +141,10 @@ secondTerm = new Term('atheist', 'athée');
 couple = new Couple('believer-atheist', firstTerm, secondTerm, false, false);
 couples.addCouple(couple);
 
-// firstTerm = new Term('fast', 'rapide');
-// secondTerm = new Term('slow', 'lent');
-// couple = new Couple('fast-slow', firstTerm, secondTerm, false, true);
-// couples.addCouple(couple);
+firstTerm = new Term('fast', 'rapide');
+secondTerm = new Term('slow', 'lent');
+couple = new Couple('fast-slow', firstTerm, secondTerm, false, true);
+couples.addCouple(couple);
 
 firstTerm = new Term('beautiful', 'beau');
 secondTerm = new Term('ugly', 'moche');
