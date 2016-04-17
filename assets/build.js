@@ -72,7 +72,7 @@ function addAnswer(terms, results, side) {
   line.innerHTML += `<div class="score ${resultClass}">
     ${result}<br>
     Score: ${session.score}/${session.round}<br>
-    On ${count} players<br>
+    On ${total} players<br>
     ${percent}% chose like you<br>
     &gt; <a href="${googleTruth}" target="_blank">The Google Truth</a>
   </div>`;

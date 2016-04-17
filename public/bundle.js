@@ -124,7 +124,7 @@
 
 	  line.innerHTML = '<div class="round">' + session.round + '/10</div>';
 	  line.innerHTML += '<div class="terms ' + side + 'Choice">' + renderTerms(terms) + '</div>';
-	  line.innerHTML += '<div class="score ' + resultClass + '">\n    ' + result + '<br>\n    Score: ' + session.score + '/' + session.round + '<br>\n    On ' + count + ' players<br>\n    ' + percent + '% chose like you<br>\n    &gt; <a href="' + googleTruth + '" target="_blank">The Google Truth</a>\n  </div>';
+	  line.innerHTML += '<div class="score ' + resultClass + '">\n    ' + result + '<br>\n    Score: ' + session.score + '/' + session.round + '<br>\n    On ' + total + ' players<br>\n    ' + percent + '% chose like you<br>\n    &gt; <a href="' + googleTruth + '" target="_blank">The Google Truth</a>\n  </div>';
 
 	  answers.insertBefore(line, answers.firstChild);
 	}
