@@ -21,7 +21,7 @@ function sendAnswer(terms, side, couple1, couple2) {
   req.open('POST', '/answer');
   req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-  req.onload = function() {
+  req.addEventListener('load', function() {
     if (req.status !== 200) {
       alert(`An error (${req.status}) occured.`);
     } else {
@@ -30,7 +30,11 @@ function sendAnswer(terms, side, couple1, couple2) {
       getQuestion();
       addAnswer(terms, results, side);
     }
-  };
+  });
+
+  req.addEventListener('error', function() {
+    alert(`An error occured.`);
+  });
 
   req.send(`association1=${association1}&association2=${association2}&couple1=${couple1}&couple2=${couple2}`);
 }
