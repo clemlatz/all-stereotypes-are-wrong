@@ -17,6 +17,7 @@ body {
 
 #header {
   background-color: white;
+  margin-top: 25px;
   padding: 15px;
   position: relative;
   z-index: 10;
