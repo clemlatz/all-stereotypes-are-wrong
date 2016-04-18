@@ -133,11 +133,12 @@ function getQuestion() {
       leftZone.addEventListener('mouseenter', function() {
         terms.classList.add('leftChoice');
       });
-      leftZone.addEventListener('mouseleave', function() {
-        terms.classList.remove('leftChoice');
-      });
       rightZone.addEventListener('mouseenter', function() {
         terms.classList.add('rightChoice');
+      });
+
+      leftZone.addEventListener('mouseleave', function() {
+        terms.classList.remove('leftChoice');
       });
       rightZone.addEventListener('mouseleave', function() {
         terms.classList.remove('rightChoice');
@@ -145,9 +146,11 @@ function getQuestion() {
 
       leftZone.addEventListener('click', function() {
         sendAnswer([termA, termB, term1, term2], 'left', couple1, couple2);
+        terms.classList.remove('leftChoice');
       });
       rightZone.addEventListener('click', function() {
         sendAnswer([termA, termB, term1, term2], 'right', couple1, couple2);
+        terms.classList.remove('rightChoice');
       });
 
       currentLine.style.marginTop = 0;
