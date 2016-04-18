@@ -3,6 +3,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  font-size: 12px;
   margin: 0;
   padding: 0;
 }
@@ -70,20 +71,20 @@ h1 {
 }
 
 .round {
-  width: 125px;
+  width: 20%;
 }
 
 .terms {
   height: 125px;
   margin: auto;
   position: relative;
-  width: 360px;
+  width: 60%;
 }
 
 .score {
   font-size: .7em;
   text-transform: none;
-  width: 125px;
+  width: 20%;
 }
 
 .equal {
@@ -92,7 +93,7 @@ h1 {
   position: absolute;
   opacity: 0;
   top: 49%;
-  width: 180px;
+  width: 50%;
 }
 
 #equalLeft {
@@ -111,13 +112,21 @@ h1 {
   display: inline-block;
   position: absolute;
   transition: 250ms;
-  width: 180px;
+  width: 50%
 }
 
 #termA {
   left: 50%;
   top: 0;
   transform: translateX(-50%);
+}
+
+#termA::before {
+  content: '<- ';
+}
+
+#termA::after {
+  content: ' ->';
 }
 
 #termB {
@@ -145,6 +154,12 @@ h1 {
   top: 33%;
   transform: translateY(-50%);
 }
+.terms.leftChoice #termA::after {
+  content: '';
+}
+.terms.leftChoice #termA::before {
+  content: '';
+}
 
 .terms.leftChoice #term1 {
   top: 66%;
@@ -166,6 +181,12 @@ h1 {
   left: 100%;
   top: 33%;
   transform: translate(-100%, -50%);
+}
+.terms.rightChoice #termA::after {
+  content: '';
+}
+.terms.rightChoice #termA::before {
+  content: '';
 }
 
 .terms.rightChoice #term1 {
@@ -203,4 +224,16 @@ h1 {
 .leftChoice .equal,
 .rightChoice .equal {
   opacity: .5;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  .terms #termA::after {
+    content: '';
+  }
+  .terms #termA::before {
+    content: '';
+  }
 }
