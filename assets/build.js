@@ -15,6 +15,9 @@ function getStats() {
 
 function sendAnswer(terms, side, couple1, couple2) {
 
+  const currentLine = document.querySelector('.current.line');
+  currentLine.style.opacity = .5;
+
   let [ termA, termB, term1, term2 ] = terms;
   let association1, association2;
 
@@ -96,7 +99,7 @@ function addAnswer(terms, results, side) {
   window.setTimeout(function () {
     currentLine.classList.add('animated');
     getQuestion();
-  });
+  }, 1000);
 }
 
 function getQuestion() {
@@ -146,14 +149,15 @@ function getQuestion() {
 
       leftZone.addEventListener('click', function() {
         sendAnswer([termA, termB, term1, term2], 'left', couple1, couple2);
-        terms.classList.remove('leftChoice');
       });
       rightZone.addEventListener('click', function() {
         sendAnswer([termA, termB, term1, term2], 'right', couple1, couple2);
-        terms.classList.remove('rightChoice');
       });
 
       currentLine.style.marginTop = 0;
+      currentLine.style.opacity = 1;
+      termsElement.classList.remove('leftChoice');
+      termsElement.classList.remove('rightChoice');
       window.setTimeout(function() {
         currentLine.classList.remove('animated');
       }, 1000)
