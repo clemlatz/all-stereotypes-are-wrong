@@ -101,10 +101,10 @@ couples.addCouple(couple);
 // couple = new Couple('smoker-non-smoker', firstTerm, secondTerm, true, false);
 // couples.addCouple(couple);
 //
-// firstTerm = new Term('young', 'jeune');
-// secondTerm = new Term('old', 'vieux');
-// couple = new Couple('young-old', firstTerm, secondTerm, false, false);
-// couples.addCouple(couple);
+firstTerm = new Term('young', 'jeune');
+secondTerm = new Term('old', 'vieux');
+couple = new Couple('young-old', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
 //
 // firstTerm = new Term('manual', 'manuel');
 // secondTerm = new Term('intellectual', 'intellectuel');
@@ -186,20 +186,20 @@ secondTerm = new Term('human', 'humain');
 couple = new Couple('robot-human', firstTerm, secondTerm, true, false);
 couples.addCouple(couple);
 
-// firstTerm = new Term('dangerous', 'dangereux');
-// secondTerm = new Term('harmless', 'inofensif');
-// couple = new Couple('dangerous-harmless', firstTerm, secondTerm, false, false);
-// couples.addCouple(couple);
-//
+firstTerm = new Term('dangerous', 'dangereux');
+secondTerm = new Term('harmless', 'inofensif');
+couple = new Couple('dangerous-harmless', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
 // firstTerm = new Term('fragile', 'fragile');
 // secondTerm = new Term('solid', 'solide');
 // couple = new Couple('fragile-solid', firstTerm, secondTerm, false, false);
 // couples.addCouple(couple);
 //
-// firstTerm = new Term('fruit', 'fruit');
-// secondTerm = new Term('vegetable', 'légume');
-// couple = new Couple('fruit-vegetable', firstTerm, secondTerm, true, false);
-// couples.addCouple(couple);
+firstTerm = new Term('fruit', 'fruit');
+secondTerm = new Term('vegetable', 'légume');
+couple = new Couple('fruit-vegetable', firstTerm, secondTerm, true, false);
+couples.addCouple(couple);
 //
 // firstTerm = new Term('scientific', 'scientifique');
 // secondTerm = new Term('artist', 'artiste');
@@ -220,12 +220,12 @@ couples.addCouple(couple);
 // secondTerm = new Term('indifferent', 'indifférent');
 // couple = new Couple('commited-indifferent', firstTerm, secondTerm, true, false);
 // couples.addCouple(couple);
-//
-// firstTerm = new Term('brave', 'coward');
-// secondTerm = new Term('coward', 'lache');
-// couple = new Couple('brave-coward', firstTerm, secondTerm, false, true);
-// couples.addCouple(couple);
-//
+
+firstTerm = new Term('brave', 'coward');
+secondTerm = new Term('coward', 'lache');
+couple = new Couple('brave-coward', firstTerm, secondTerm, false, true);
+couples.addCouple(couple);
+
 // firstTerm = new Term('liar', 'menteur');
 // secondTerm = new Term('honest', 'honnête');
 // couple = new Couple('liar-honest', firstTerm, secondTerm, false, true);
@@ -245,5 +245,10 @@ couples.addCouple(couple);
 //secondTerm = new Term('honest', 'honnête');
 //couple = new Couple('liar-honest', firstTerm, secondTerm, false, true);
 //couples.addCouple(couple);
+
+firstTerm = new Term('jewish', 'juif');
+secondTerm = new Term('muslim', 'musulman');
+couple = new Couple('jewish-musulman', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
 
 module.exports = couples;
