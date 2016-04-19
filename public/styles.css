@@ -1,16 +1,19 @@
 @import url(https://fonts.googleapis.com/css?family=Berkshire+Swash);
-@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Slabo+27px);
 
 body {
-  font-family: 'Roboto', sans-serif;
+  background: lightblue;
+  font-family: 'Slabo 27px', serif;
   font-size: 12px;
   margin: 0;
   padding: 0;
 }
 
 #main {
+  background: #fff;
+  box-shadow: -1px 0 13px -1px rgba(0, 0, 0, .15);
   margin: auto;
-  max-width: 600px;
+  max-width: 95%;
   text-align: center;
   text-transform: uppercase;
 }
@@ -18,7 +21,7 @@ body {
 #header {
   background-color: white;
   margin-top: 25px;
-  padding: 15px;
+  padding: 20px;
   position: relative;
   z-index: 10;
 }
@@ -44,6 +47,7 @@ body {
 }
 
 h1 {
+  color: lightblue;
   margin-top: 0;
   font-family: 'Berkshire Swash', cursive;
   font-size: 3em;
@@ -58,6 +62,7 @@ h1 {
 
 .line {
   align-items: center;
+  border-top: 3px dashed lightblue;
   padding: 15px 0;
   overflow: hidden;
   display: flex;
@@ -67,8 +72,7 @@ h1 {
   transition: all 1s;
 }
 
-#answers .line {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+.line {
 }
 
 .round {
@@ -230,6 +234,12 @@ h1 {
 @media (min-width: 768px) {
   body {
     font-size: 16px;
+  }
+  #main {
+    max-width: 718px;
+  }
+  #header {
+    margin-top: 35px;
   }
   .terms #termA::after {
     content: '';

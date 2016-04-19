@@ -132,7 +132,7 @@
 	  var googleTruth = 'https://www.google.com/trends/explore#q=' + terms[0] + ' ' + terms[2] + ', ' + terms[0] + ' ' + terms[3] + ', ' + terms[1] + ' ' + terms[2] + ', ' + terms[1] + ' ' + terms[3];
 	  line.classList.add('line');
 
-	  currentLine.style.marginTop = '-155px';
+	  currentLine.style.marginTop = '-157px';
 
 	  if (success) {
 	    session.score++;
