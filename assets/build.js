@@ -13,7 +13,7 @@ function getStats() {
     });
 }
 
-function sendAnswer(terms, side, couple1, couple2) {
+function sendAnswer(terms, side, couple1, couple2, token) {
 
   const currentLine = document.querySelector('.current.line');
   currentLine.style.opacity = .5;
@@ -36,7 +36,8 @@ function sendAnswer(terms, side, couple1, couple2) {
 
   req.addEventListener('load', function() {
     if (req.status !== 200) {
-      alert(`An error (${req.status}) occured.`);
+      const error = JSON.parse(req.response).error;
+      alert(`An error ${req.status} (${error}) occured.`);
     } else {
       const results = JSON.parse(req.response);
 
@@ -48,7 +49,7 @@ function sendAnswer(terms, side, couple1, couple2) {
     alert(`An error occured.`);
   });
 
-  req.send(`association1=${association1}&association2=${association2}&couple1=${couple1}&couple2=${couple2}`);
+  req.send(`token=${token}&association1=${association1}&association2=${association2}&couple1=${couple1}&couple2=${couple2}`);
 }
 
 function renderTerms(terms) {
@@ -112,6 +113,7 @@ function getQuestion() {
       incrementRound();
 
       const couples = json.couples;
+      const token   = json.token;
       const couple1 = couples[0].id;
       const termA   = couples[0].firstTerm.en;
       const termB   = couples[0].secondTerm.en;
@@ -149,10 +151,10 @@ function getQuestion() {
       });
 
       leftZone.addEventListener('click', function() {
-        sendAnswer([termA, termB, term1, term2], 'left', couple1, couple2);
+        sendAnswer([termA, termB, term1, term2], 'left', couple1, couple2, token);
       });
       rightZone.addEventListener('click', function() {
-        sendAnswer([termA, termB, term1, term2], 'right', couple1, couple2);
+        sendAnswer([termA, termB, term1, term2], 'right', couple1, couple2, token);
       });
 
       currentLine.style.marginTop = 0;

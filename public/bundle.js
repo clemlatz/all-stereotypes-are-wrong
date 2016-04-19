@@ -62,7 +62,7 @@
 	  });
 	}
 
-	function sendAnswer(terms, side, couple1, couple2) {
+	function sendAnswer(terms, side, couple1, couple2, token) {
 
 	  var currentLine = document.querySelector('.current.line');
 	  currentLine.style.opacity = .5;
@@ -92,7 +92,8 @@
 
 	  req.addEventListener('load', function () {
 	    if (req.status !== 200) {
-	      alert('An error (' + req.status + ') occured.');
+	      var error = JSON.parse(req.response).error;
+	      alert('An error ' + req.status + ' (' + error + ') occured.');
 	    } else {
 	      var results = JSON.parse(req.response);
 
@@ -104,7 +105,7 @@
 	    alert('An error occured.');
 	  });
 
-	  req.send('association1=' + association1 + '&association2=' + association2 + '&couple1=' + couple1 + '&couple2=' + couple2);
+	  req.send('token=' + token + '&association1=' + association1 + '&association2=' + association2 + '&couple1=' + couple1 + '&couple2=' + couple2);
 	}
 
 	function renderTerms(terms) {
@@ -160,6 +161,7 @@
 	    incrementRound();
 
 	    var couples = json.couples;
+	    var token = json.token;
 	    var couple1 = couples[0].id;
 	    var termA = couples[0].firstTerm.en;
 	    var termB = couples[0].secondTerm.en;
@@ -197,10 +199,10 @@
 	    });
 
 	    leftZone.addEventListener('click', function () {
-	      sendAnswer([termA, termB, term1, term2], 'left', couple1, couple2);
+	      sendAnswer([termA, termB, term1, term2], 'left', couple1, couple2, token);
 	    });
 	    rightZone.addEventListener('click', function () {
-	      sendAnswer([termA, termB, term1, term2], 'right', couple1, couple2);
+	      sendAnswer([termA, termB, term1, term2], 'right', couple1, couple2, token);
 	    });
 
 	    currentLine.style.marginTop = 0;

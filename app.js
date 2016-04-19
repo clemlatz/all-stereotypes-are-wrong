@@ -13,16 +13,16 @@ const Token       = require('./models/token');
 
 const couples = require('./data/couples');
 
+const checkToken = require('./middlewares/check-token');
+
+const getCombinationId = require('./helpers/get-combination-id');
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 mongoose.connect(mongo_url);
 process.stdout.write(`Mongoose connected to ${mongo_url}\n`);
-
-function getCombinationId(couple1, couple2) {
-  return [couple1, couple2].sort().join();
-}
 
 app.get('/couples', function(request, response) {
 
@@ -48,14 +48,10 @@ app.get('/stats', function(request, response) {
   });
 });
 
-app.post('/answer', function(request, response) {
-  const association1 = request.body.association1.split(',').sort().join(',');
-  const association2 = request.body.association2.split(',').sort().join(',');
-  const couple1      = request.body.couple1;
-  const couple2      = request.body.couple2;
-
-  const combinationContent = getCombinationId(couple1, couple2);
-  const answerContent      = [association1, association2].sort().join(';');
+app.post('/answer', checkToken, function(request, response) {
+  const association1  = request.body.association1.split(',').sort().join(',');
+  const association2  = request.body.association2.split(',').sort().join(',');
+  const answerContent = [association1, association2].sort().join(';');
 
   Answer.findOne({ answer: answerContent }, function(err, answer) {
     if (err) throw err;
@@ -63,7 +59,7 @@ app.post('/answer', function(request, response) {
     if (!answer) {
       answer = new Answer({
         answer: answerContent,
-        combination: combinationContent
+        combination: request.combination
       });
     }
 
@@ -72,12 +68,12 @@ app.post('/answer', function(request, response) {
     answer.save(function(err) {
       if (err) throw err;
 
-      Combination.findOne({ combination: combinationContent }, function(err, combination) {
+      Combination.findOne({ combination: request.combination }, function(err, combination) {
         if (err) throw err;
 
         if (!combination) {
           combination = new Combination({
-            combination: combinationContent
+            combination: request.combination
           });
         }
 
