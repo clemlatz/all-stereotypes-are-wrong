@@ -28,7 +28,7 @@ body {
 
 #stats {
   left: 0;
-  position: fixed;
+  position: absolute;
   padding: 3px 6px;
   top: 0;
 }
@@ -37,7 +37,7 @@ body {
   font-size: 1.5em;
   opacity: .5;
   padding: 2px 5px;
-  position: fixed;
+  position: absolute;
   right: 0;
   top: 0;
 }
@@ -63,6 +63,7 @@ h1 {
 .line {
   align-items: center;
   border-top: 3px dashed lightblue;
+  height: 125px;
   padding: 15px 0;
   overflow: hidden;
   display: flex;
@@ -70,9 +71,6 @@ h1 {
 
 .line.animated {
   transition: all 1s;
-}
-
-.line {
 }
 
 .left {
@@ -119,6 +117,11 @@ h1 {
 #equalRight {
   left: 100%;
   transform: translate(-100%, -50%);
+}
+
+.final-score {
+  font-size: 2em;
+  width: 100%;
 }
 
 /* TERMS DEFAULT */
@@ -250,6 +253,9 @@ h1 {
   }
   #header {
     margin-top: 35px;
+  }
+  .final-score {
+
   }
   .terms #termA::after {
     content: '';

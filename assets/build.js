@@ -1,7 +1,7 @@
 const session = {
   round: 0,
   score: 0
-}
+};
 
 function getStats() {
   fetch('/stats')
@@ -46,7 +46,7 @@ function sendAnswer(terms, side, couple1, couple2, token) {
   });
 
   req.addEventListener('error', function() {
-    alert(`An error occured.`);
+    alert('An error occured.');
   });
 
   req.send(`token=${token}&association1=${association1}&association2=${association2}&couple1=${couple1}&couple2=${couple2}`);
@@ -82,7 +82,7 @@ function addAnswer(terms, results, side) {
   } else {
     twitterMessage = `${terms[0]} = ${terms[3]}\n${terms[1]} = ${terms[2]}\n`.toUpperCase();
   }
-  const twitterShare = `https://twitter.com/home?status=` + encodeURI(twitterMessage) + `%23AllStereotypesAreWrong%0Ahttp://asaw.nokto.net`;
+  const twitterShare = 'https://twitter.com/home?status=' + encodeURI(twitterMessage) + '%23AllStereotypesAreWrong%0Ahttp://asaw.nokto.net';
 
   currentLine.style.marginTop = '-157px';
 
@@ -111,9 +111,32 @@ function addAnswer(terms, results, side) {
 
   getStats();
 
-  window.setTimeout(function () {
-    currentLine.classList.add('animated');
+  if (session.round === 10) {
+    addFinalScore();
+  } else {
     getQuestion();
+  }
+}
+
+function addFinalScore() {
+  const answers = document.querySelector('#answers');
+  const line    = document.createElement('div');
+  line.classList.add('line');
+  line.classList.add('animated');
+  line.style.marginTop = '-158px';
+
+  line.innerHTML = `<div class="final-score">~ FINAL SCORE: ${session.score}/10 ~</div>`;
+  answers.insertBefore(line, answers.firstChild);
+
+  session.score = 0;
+  session.round = 0;
+
+  // Display after 1 second
+  window.setTimeout(function() {
+    line.style.marginTop = 0;
+    window.setTimeout(function() {
+      getQuestion();
+    }, 1000);
   }, 1000);
 }
 
@@ -151,17 +174,17 @@ function getQuestion() {
       termsElement.appendChild(rightZone);
 
       leftZone.addEventListener('mouseenter', function() {
-        terms.classList.add('leftChoice');
+        termsElement.classList.add('leftChoice');
       });
       rightZone.addEventListener('mouseenter', function() {
-        terms.classList.add('rightChoice');
+        termsElement.classList.add('rightChoice');
       });
 
       leftZone.addEventListener('mouseleave', function() {
-        terms.classList.remove('leftChoice');
+        termsElement.classList.remove('leftChoice');
       });
       rightZone.addEventListener('mouseleave', function() {
-        terms.classList.remove('rightChoice');
+        termsElement.classList.remove('rightChoice');
       });
 
       leftZone.addEventListener('click', function() {
@@ -171,13 +194,19 @@ function getQuestion() {
         sendAnswer([termA, termB, term1, term2], 'right', couple1, couple2, token);
       });
 
-      currentLine.style.marginTop = 0;
-      currentLine.style.opacity = 1;
-      termsElement.classList.remove('leftChoice');
-      termsElement.classList.remove('rightChoice');
-      window.setTimeout(function() {
-        currentLine.classList.remove('animated');
-      }, 1000)
+      currentLine.classList.add('animated');
+      window.setTimeout(function () {
+        currentLine.style.marginTop = 0;
+        currentLine.style.opacity = 1;
+
+        termsElement.classList.remove('leftChoice');
+        termsElement.classList.remove('rightChoice');
+        window.setTimeout(function() {
+          currentLine.classList.remove('animated');
+        }, 1000);
+      }, 1000);
+
+
     });
 }
 
