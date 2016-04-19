@@ -139,7 +139,7 @@
 	  }
 	  var twitterShare = 'https://twitter.com/home?status=' + encodeURI(twitterMessage) + '%23AllStereotypesAreWrong%0Ahttp://asaw.nokto.net';
 
-	  currentLine.style.marginTop = '-157px';
+	  currentLine.style.marginTop = '-156px';
 
 	  if (success) {
 	    session.score++;
@@ -164,7 +164,7 @@
 	  var line = document.createElement('div');
 	  line.classList.add('line');
 	  line.classList.add('animated');
-	  line.style.marginTop = '-158px';
+	  line.style.marginTop = '-156px';
 
 	  line.innerHTML = '<div class="final-score">~ FINAL SCORE: ' + session.score + '/10 ~</div>';
 	  answers.insertBefore(line, answers.firstChild);
