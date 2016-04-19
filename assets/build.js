@@ -75,7 +75,14 @@ function addAnswer(terms, results, side) {
   const result = success ? 'Well done' : 'Wrong';
   const resultClass = success ? 'correct' : 'wrong';
   const googleTruth = `https://www.google.com/trends/explore#q=${terms[0]} ${terms[2]}, ${terms[0]} ${terms[3]}, ${terms[1]} ${terms[2]}, ${terms[1]} ${terms[3]}`;
-  line.classList.add('line');
+
+  let twitterMessage;
+  if (side == 'left') {
+    twitterMessage = `${terms[0]} = ${terms[2]}\n${terms[1]} = ${terms[3]}\n`.toUpperCase();
+  } else {
+    twitterMessage = `${terms[0]} = ${terms[3]}\n${terms[1]} = ${terms[2]}\n`.toUpperCase();
+  }
+  const twitterShare = `https://twitter.com/home?status=` + encodeURI(twitterMessage) + `%23AllStereotypesAreWrong%0Ahttp://asaw.nokto.net`;
 
   currentLine.style.marginTop = '-157px';
 
@@ -83,15 +90,22 @@ function addAnswer(terms, results, side) {
     session.score++;
   }
 
-  line.innerHTML  = `<div class="round">${session.round}/10</div>`;
-  line.innerHTML += `<div class="terms ${side}Choice">` + renderTerms(terms) + '</div>';
-  line.innerHTML += `<div class="score ${resultClass}">
-    ${result}<br>
-    Score: ${session.score}/${session.round}<br>
-    On ${total} players<br>
-    ${percent}% chose like you<br>
-    &gt; <a href="${googleTruth}" target="_blank">The Google Truth</a>
-  </div>`;
+  line.classList.add('line');
+  line.innerHTML  = `
+    <div class="left">
+      <p class="round">${session.round}/10</p>
+      <p class="share">
+        > <a href="${twitterShare}" target="_blank">Share this stereotype</a>
+      </p>
+    </div>
+    <div class="terms ${side}Choice">` + renderTerms(terms) + `</div>
+    <div class="score ${resultClass}">
+      ${result}<br>
+      Score: ${session.score}/${session.round}<br>
+      On ${total} players<br>
+      ${percent}% chose like you<br>
+      &gt; <a href="${googleTruth}" target="_blank">The Google Truth</a>
+    </div>`;
 
   answers.insertBefore(line, answers.firstChild);
 
