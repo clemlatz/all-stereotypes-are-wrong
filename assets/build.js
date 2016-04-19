@@ -1,3 +1,10 @@
+'use strict';
+
+const Chart = require('chart.js');
+Chart.defaults.global.responsive = false;
+Chart.defaults.global.legend.display = false;
+Chart.defaults.global.tooltips.enabled = false;
+
 const session = {
   round: 0,
   score: 0
@@ -75,6 +82,7 @@ function addAnswer(terms, results, side) {
   const result = success ? 'Well done' : 'Wrong';
   const resultClass = success ? 'correct' : 'wrong';
   const googleTruth = `https://www.google.com/trends/explore#q=${terms[0]} ${terms[2]}, ${terms[0]} ${terms[3]}, ${terms[1]} ${terms[2]}, ${terms[1]} ${terms[3]}`;
+  const pieColor = success ? '#46BFBD' : '#F7464A';
 
   let twitterMessage;
   if (side == 'left') {
@@ -100,6 +108,7 @@ function addAnswer(terms, results, side) {
     </div>
     <div class="terms ${side}Choice">` + renderTerms(terms) + `</div>
     <div class="score ${resultClass}">
+      <canvas class="pie" width="50" height="50"></canvas><br>
       ${result}<br>
       Score: ${session.score}/${session.round}<br>
       On ${total} players<br>
@@ -108,6 +117,18 @@ function addAnswer(terms, results, side) {
     </div>`;
 
   answers.insertBefore(line, answers.firstChild);
+
+  const pie = line.querySelector('.pie');
+  new Chart(pie, {
+    type:'pie',
+    data: {
+      labels: [ 'Your choice', 'The other choice' ],
+      datasets: [{
+        data: [count, (total - count)],
+        backgroundColor: [ pieColor, '#cccccc' ]
+      }]
+    }
+  });
 
   getStats();
 

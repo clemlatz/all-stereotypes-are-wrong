@@ -21,6 +21,7 @@
   "homepage": "https://github.com/iwazaru/all-stereotypes-are-wrong#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "chart.js": "^2.0.2",
     "express": "^4.13.4",
     "mongoose": "^4.4.12",
     "whatwg-fetch": "^0.11.0"
