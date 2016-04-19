@@ -111,12 +111,13 @@ function getQuestion() {
 
       incrementRound();
 
-      const couple1 = json[0].id;
-      const termA = json[0].firstTerm.en;
-      const termB = json[0].secondTerm.en;
-      const couple2 = json[1].id;
-      const term1 = json[1].firstTerm.en;
-      const term2 = json[1].secondTerm.en;
+      const couples = json.couples;
+      const couple1 = couples[0].id;
+      const termA   = couples[0].firstTerm.en;
+      const termB   = couples[0].secondTerm.en;
+      const couple2 = couples[1].id;
+      const term1   = couples[1].firstTerm.en;
+      const term2   = couples[1].secondTerm.en;
 
       const currentLine = document.querySelector('.current.line');
       const termsElement = currentLine.querySelector('.terms');

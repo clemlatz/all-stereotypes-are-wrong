@@ -9,6 +9,7 @@ const mongo_url = process.env.MONGO_URL || 'mongodb://localhost/asaw';
 
 const Answer      = require('./models/answer');
 const Combination = require('./models/combination');
+const Token       = require('./models/token');
 
 const couples = require('./data/couples');
 
@@ -19,12 +20,21 @@ app.use(express.static('public'));
 mongoose.connect(mongo_url);
 process.stdout.write(`Mongoose connected to ${mongo_url}\n`);
 
+function getCombinationId(couple1, couple2) {
+  return [couple1, couple2].sort().join();
+}
+
 app.get('/couples', function(request, response) {
 
   const couple1 = couples.getRandom();
   const couple2 = couples.getRandom(couple1);
 
-  response.json([couple1, couple2]);
+  const combination = getCombinationId(couple1.id, couple2.id);
+  const token       = new Token({ combination: combination });
+
+  token.save().then(function(token) {
+    response.json({ couples: [couple1, couple2], token: token.token });
+  });
 });
 
 app.get('/stats', function(request, response) {
@@ -44,7 +54,7 @@ app.post('/answer', function(request, response) {
   const couple1      = request.body.couple1;
   const couple2      = request.body.couple2;
 
-  const combinationContent = [couple1, couple2].sort().join();
+  const combinationContent = getCombinationId(couple1, couple2);
   const answerContent      = [association1, association2].sort().join(';');
 
   Answer.findOne({ answer: answerContent }, function(err, answer) {

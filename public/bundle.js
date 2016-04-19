@@ -159,12 +159,13 @@
 
 	    incrementRound();
 
-	    var couple1 = json[0].id;
-	    var termA = json[0].firstTerm.en;
-	    var termB = json[0].secondTerm.en;
-	    var couple2 = json[1].id;
-	    var term1 = json[1].firstTerm.en;
-	    var term2 = json[1].secondTerm.en;
+	    var couples = json.couples;
+	    var couple1 = couples[0].id;
+	    var termA = couples[0].firstTerm.en;
+	    var termB = couples[0].secondTerm.en;
+	    var couple2 = couples[1].id;
+	    var term1 = couples[1].firstTerm.en;
+	    var term2 = couples[1].secondTerm.en;
 
 	    var currentLine = document.querySelector('.current.line');
 	    var termsElement = currentLine.querySelector('.terms');

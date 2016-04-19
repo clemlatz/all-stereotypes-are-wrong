@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
+const crypto   = require('crypto');
 
 const TokenSchema = mongoose.Schema({
   token: {
     type: String,
-    required: true
+    required: true,
+    default: function() {
+      return crypto.randomBytes(32).toString('hex');
+    }
   },
   combination: {
     type: String,
