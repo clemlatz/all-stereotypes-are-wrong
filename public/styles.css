@@ -275,6 +275,14 @@ h1 {
     width: 25%;
   }
 
+  .correct strong {
+    color: #46bfbd;
+  }
+
+  .wrong strong {
+    color: #f7464A;
+  }
+
   .pieContainer {
     float: left;
     height: 70px;

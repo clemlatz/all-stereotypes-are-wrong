@@ -131,7 +131,7 @@
 	  var total = parseInt(results.total);
 	  var percent = Math.floor(count / total * 100);
 	  var success = percent > 50;
-	  var result = success ? '<span class="fa fa-thumbs-o-up"></span>  Well done' : '<span class="fa fa-thumbs-o-down"></span> Wrong';
+	  var result = success ? '<span class="fa fa-thumbs-o-up"></span>  <strong>Well done</strong> +1pt' : '<span class="fa fa-thumbs-o-down"></span> <strong>Wrong</strong>';
 	  var resultClass = success ? 'correct' : 'wrong';
 	  var googleTruth = 'https://www.google.com/trends/explore#q=' + terms[0] + ' ' + terms[2] + ', ' + terms[0] + ' ' + terms[3] + ', ' + terms[1] + ' ' + terms[2] + ', ' + terms[1] + ' ' + terms[3];
 	  var pieColor = success ? '#46BFBD' : '#F7464A';
@@ -151,7 +151,7 @@
 	  }
 
 	  line.classList.add('line');
-	  line.innerHTML = '\n    <div class="left">\n      <p class="round">' + session.round + '/10</p>\n      <p class="share">\n        > <a href="' + twitterShare + '" target="_blank">Share this stereotype</a>\n      </p>\n    </div>\n    <div class="terms ' + side + 'Choice">' + renderTerms(terms) + ('</div>\n    <div class="right ' + resultClass + '">\n      <div class="pieContainer">\n        <canvas class="pie" width="70" height="70"></canvas>\n      </div>\n      ' + percent + '% of ' + total + ' players<br>chose like you<br>\n      ' + result + '<br><br>\n      &gt; <a href="' + googleTruth + '" target="_blank">The Google Truth</a>\n    </div>');
+	  line.innerHTML = '\n    <div class="left">\n      <p class="round">' + session.round + '/10</p>\n      <p class="share">\n        > <a href="' + twitterShare + '" target="_blank">Share this stereotype</a>\n      </p>\n    </div>\n    <div class="terms ' + side + 'Choice">' + renderTerms(terms) + ('</div>\n    <div class="right ' + resultClass + '">\n      <div class="pieContainer">\n        <canvas class="pie" width="70" height="70"></canvas>\n      </div>\n      <strong>' + percent + '% of ' + total + '</strong> players<br>chose like you<br>\n      ' + result + '<br><br>\n      &gt; <a href="' + googleTruth + '" target="_blank">The Google Truth</a>\n    </div>');
 
 	  answers.insertBefore(line, answers.firstChild);
 
