@@ -1,7 +1,6 @@
 'use strict';
 
 const Chart = require('chart.js');
-Chart.defaults.global.responsive = false;
 Chart.defaults.global.legend.display = false;
 Chart.defaults.global.tooltips.enabled = false;
 
@@ -79,7 +78,7 @@ function addAnswer(terms, results, side) {
   const total = parseInt(results.total);
   const percent = Math.floor((count / total) * 100);
   const success = (percent > 50);
-  const result = success ? 'Well done' : 'Wrong';
+  const result = success ? '<span class="fa fa-thumbs-o-up"></span>  Well done' : '<span class="fa fa-thumbs-o-down"></span> Wrong';
   const resultClass = success ? 'correct' : 'wrong';
   const googleTruth = `https://www.google.com/trends/explore#q=${terms[0]} ${terms[2]}, ${terms[0]} ${terms[3]}, ${terms[1]} ${terms[2]}, ${terms[1]} ${terms[3]}`;
   const pieColor = success ? '#46BFBD' : '#F7464A';
@@ -107,12 +106,12 @@ function addAnswer(terms, results, side) {
       </p>
     </div>
     <div class="terms ${side}Choice">` + renderTerms(terms) + `</div>
-    <div class="score ${resultClass}">
-      <canvas class="pie" width="50" height="50"></canvas><br>
-      ${result}<br>
-      Score: ${session.score}/${session.round}<br>
-      On ${total} players<br>
-      ${percent}% chose like you<br>
+    <div class="right ${resultClass}">
+      <div class="pieContainer">
+        <canvas class="pie" width="70" height="70"></canvas>
+      </div>
+      ${percent}% of ${total} players<br>chose like you<br>
+      ${result}<br><br>
       &gt; <a href="${googleTruth}" target="_blank">The Google Truth</a>
     </div>`;
 

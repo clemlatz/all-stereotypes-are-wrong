@@ -49,7 +49,6 @@
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 	var Chart = __webpack_require__(2);
-	Chart.defaults.global.responsive = false;
 	Chart.defaults.global.legend.display = false;
 	Chart.defaults.global.tooltips.enabled = false;
 
@@ -132,7 +131,7 @@
 	  var total = parseInt(results.total);
 	  var percent = Math.floor(count / total * 100);
 	  var success = percent > 50;
-	  var result = success ? 'Well done' : 'Wrong';
+	  var result = success ? '<span class="fa fa-thumbs-o-up"></span>  Well done' : '<span class="fa fa-thumbs-o-down"></span> Wrong';
 	  var resultClass = success ? 'correct' : 'wrong';
 	  var googleTruth = 'https://www.google.com/trends/explore#q=' + terms[0] + ' ' + terms[2] + ', ' + terms[0] + ' ' + terms[3] + ', ' + terms[1] + ' ' + terms[2] + ', ' + terms[1] + ' ' + terms[3];
 	  var pieColor = success ? '#46BFBD' : '#F7464A';
@@ -152,7 +151,7 @@
 	  }
 
 	  line.classList.add('line');
-	  line.innerHTML = '\n    <div class="left">\n      <p class="round">' + session.round + '/10</p>\n      <p class="share">\n        > <a href="' + twitterShare + '" target="_blank">Share this stereotype</a>\n      </p>\n    </div>\n    <div class="terms ' + side + 'Choice">' + renderTerms(terms) + ('</div>\n    <div class="score ' + resultClass + '">\n      <canvas class="pie" width="50" height="50"></canvas><br>\n      ' + result + '<br>\n      Score: ' + session.score + '/' + session.round + '<br>\n      On ' + total + ' players<br>\n      ' + percent + '% chose like you<br>\n      &gt; <a href="' + googleTruth + '" target="_blank">The Google Truth</a>\n    </div>');
+	  line.innerHTML = '\n    <div class="left">\n      <p class="round">' + session.round + '/10</p>\n      <p class="share">\n        > <a href="' + twitterShare + '" target="_blank">Share this stereotype</a>\n      </p>\n    </div>\n    <div class="terms ' + side + 'Choice">' + renderTerms(terms) + ('</div>\n    <div class="right ' + resultClass + '">\n      <div class="pieContainer">\n        <canvas class="pie" width="70" height="70"></canvas>\n      </div>\n      ' + percent + '% of ' + total + ' players<br>chose like you<br>\n      ' + result + '<br><br>\n      &gt; <a href="' + googleTruth + '" target="_blank">The Google Truth</a>\n    </div>');
 
 	  answers.insertBefore(line, answers.firstChild);
 

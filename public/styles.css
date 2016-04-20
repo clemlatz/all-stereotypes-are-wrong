@@ -93,10 +93,16 @@ h1 {
   width: 60%;
 }
 
-.score {
+.right {
   font-size: .7em;
   text-transform: none;
   width: 20%;
+}
+
+.pieContainer {
+  height: 50px;
+  margin: auto;
+  width: 50px;
 }
 
 .equal {
@@ -247,18 +253,39 @@ h1 {
   body {
     font-size: 16px;
   }
+
   #main {
     max-width: 718px;
   }
+
   #header {
     margin-top: 35px;
   }
-  .final-score {
 
+  .left {
+    width: 25%;
   }
+
+  .terms {
+    width: 50%;
+  }
+
+  .right {
+    text-align: left;
+    width: 25%;
+  }
+
+  .pieContainer {
+    float: left;
+    height: 70px;
+    margin-right: 10px;
+    width: 70px;
+  }
+
   .terms #termA::after {
     content: '';
   }
+
   .terms #termA::before {
     content: '';
   }
