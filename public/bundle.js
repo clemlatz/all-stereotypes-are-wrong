@@ -127,10 +127,10 @@
 	  var answers = document.querySelector('#answers');
 	  var currentLine = document.querySelector('.current.line');
 	  var line = document.createElement('div');
-	  var count = parseInt(results.count);
-	  var total = parseInt(results.total);
+	  var count = parseInt(results.count) > 1 ? parseInt(results.count) - 1 : 1;
+	  var total = parseInt(results.total) > 1 ? parseInt(results.total) - 1 : 1;
 	  var percent = Math.floor(count / total * 100);
-	  var success = percent > 50;
+	  var success = percent >= 50;
 	  var result = success ? '<span class="fa fa-thumbs-o-up"></span>  <strong>Well done</strong> +1pt' : '<span class="fa fa-thumbs-o-down"></span> <strong>Wrong</strong>';
 	  var resultClass = success ? 'correct' : 'wrong';
 	  var googleTruth = 'https://www.google.com/trends/explore#q=' + terms[0] + ' ' + terms[2] + ', ' + terms[0] + ' ' + terms[3] + ', ' + terms[1] + ' ' + terms[2] + ', ' + terms[1] + ' ' + terms[3];

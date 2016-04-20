@@ -74,10 +74,10 @@ function addAnswer(terms, results, side) {
   const answers = document.querySelector('#answers');
   const currentLine = document.querySelector('.current.line');
   const line = document.createElement('div');
-  const count = parseInt(results.count);
-  const total = parseInt(results.total);
+  const count = parseInt(results.count) > 1 ? parseInt(results.count) - 1 : 1;
+  const total = parseInt(results.total) > 1 ? parseInt(results.total) - 1 : 1;
   const percent = Math.floor((count / total) * 100);
-  const success = (percent > 50);
+  const success = (percent >= 50);
   const result = success ? '<span class="fa fa-thumbs-o-up"></span>  <strong>Well done</strong> +1pt' : '<span class="fa fa-thumbs-o-down"></span> <strong>Wrong</strong>';
   const resultClass = success ? 'correct' : 'wrong';
   const googleTruth = `https://www.google.com/trends/explore#q=${terms[0]} ${terms[2]}, ${terms[0]} ${terms[3]}, ${terms[1]} ${terms[2]}, ${terms[1]} ${terms[3]}`;
