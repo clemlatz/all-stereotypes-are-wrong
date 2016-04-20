@@ -246,6 +246,11 @@ couples.addCouple(couple);
 //couple = new Couple('liar-honest', firstTerm, secondTerm, false, true);
 //couples.addCouple(couple);
 
+firstTerm = new Term('batman', 'batman');
+secondTerm = new Term('superman', 'superman');
+couple = new Couple('batman-superman', firstTerm, secondTerm, true, false);
+couples.addCouple(couple);
+
 firstTerm = new Term('jewish', 'juif');
 secondTerm = new Term('muslim', 'musulman');
 couple = new Couple('jewish-musulman', firstTerm, secondTerm, false, false);
