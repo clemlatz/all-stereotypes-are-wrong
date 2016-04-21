@@ -18,8 +18,10 @@ $ npm install
 
 ## Todo
 
-* Header with stats
-* Charts results
-* End of game
 * French version
-* Don't ask the same question
+* Don't ask the same question twice
+
+## Changelog
+
+1.0.0 (2016-04-21)
+* First release
