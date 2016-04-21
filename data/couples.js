@@ -76,11 +76,11 @@ secondTerm = new Term('dumb', 'bête');
 couple = new Couple('smart-dumb', firstTerm, secondTerm, false, true);
 couples.addCouple(couple);
 
-// firstTerm = new Term('nice', 'gentil');
-// secondTerm = new Term('mean', 'méchant');
-// couple = new Couple('nice-mean', firstTerm, secondTerm, false, true);
-// couples.addCouple(couple);
-//
+firstTerm = new Term('nice', 'gentil');
+secondTerm = new Term('mean', 'méchant');
+couple = new Couple('nice-mean', firstTerm, secondTerm, false, true);
+couples.addCouple(couple);
+
 firstTerm = new Term('vote left', 'de gauche');
 secondTerm = new Term('vote right', 'de droite');
 couple = new Couple('leftist-rightist', firstTerm, secondTerm, false, false);
@@ -254,6 +254,21 @@ couples.addCouple(couple);
 firstTerm = new Term('jewish', 'juif');
 secondTerm = new Term('muslim', 'musulman');
 couple = new Couple('jewish-musulman', firstTerm, secondTerm, false, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('mac', 'mac');
+secondTerm = new Term('PC', 'PC');
+couple = new Couple('mac-pc', firstTerm, secondTerm, true, false);
+couples.addCouple(couple);
+
+firstTerm = new Term('generous', 'généreux');
+secondTerm = new Term('avaricious', 'avare');
+couple = new Couple('generous-avaricious', firstTerm, secondTerm, false, true);
+couples.addCouple(couple);
+
+firstTerm = new Term('handicaped', 'handicapé');
+secondTerm = new Term('able-bodied', 'valide');
+couple = new Couple('handicaped-able-bodied', firstTerm, secondTerm, false, false);
 couples.addCouple(couple);
 
 module.exports = couples;
