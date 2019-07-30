@@ -27,6 +27,10 @@ Diversity Jam (April 15-17, 2016) hosted at Mozilla Paris.
 
 ## Changelog
 
+### DEV
+
+- Upgrade dependencies to fix security flaws
+
 ### 1.0.0 (2016-04-21)
 
 - First release
