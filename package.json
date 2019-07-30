@@ -22,7 +22,7 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "chart.js": "^2.0.2",
-    "express": "^4.13.4",
+    "express": "^4.17.1",
     "mongoose": "^4.4.12",
     "whatwg-fetch": "^0.11.0"
   },
