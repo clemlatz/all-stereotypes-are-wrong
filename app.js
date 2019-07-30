@@ -1,15 +1,15 @@
 'use strict';
 
-const express    = require('express');
-const mongoose   = require('mongoose');
+const express = require('express');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const port      = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 const mongo_url = process.env.MONGO_URL || 'mongodb://localhost/asaw';
 
-const Answer      = require('./models/answer');
+const Answer = require('./models/answer');
 const Combination = require('./models/combination');
-const Token       = require('./models/token');
+const Token = require('./models/token');
 
 const couples = require('./data/couples');
 
@@ -21,16 +21,17 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-mongoose.connect(mongo_url);
+mongoose.connect(mongo_url, {
+  useMongoClient: true,
+});
 process.stdout.write(`Mongoose connected to ${mongo_url}\n`);
 
 app.get('/couples', function(request, response) {
-
   const couple1 = couples.getRandom();
   const couple2 = couples.getRandom(couple1);
 
   const combination = getCombinationId(couple1.id, couple2.id);
-  const token       = new Token({ combination: combination });
+  const token = new Token({ combination: combination });
 
   token.save().then(function(token) {
     response.json({ couples: [couple1, couple2], token: token.token });
@@ -49,8 +50,14 @@ app.get('/stats', function(request, response) {
 });
 
 app.post('/answer', checkToken, function(request, response) {
-  const association1  = request.body.association1.split(',').sort().join(',');
-  const association2  = request.body.association2.split(',').sort().join(',');
+  const association1 = request.body.association1
+    .split(',')
+    .sort()
+    .join(',');
+  const association2 = request.body.association2
+    .split(',')
+    .sort()
+    .join(',');
   const answerContent = [association1, association2].sort().join(';');
 
   Answer.findOne({ answer: answerContent }, function(err, answer) {
@@ -59,7 +66,7 @@ app.post('/answer', checkToken, function(request, response) {
     if (!answer) {
       answer = new Answer({
         answer: answerContent,
-        combination: request.combination
+        combination: request.combination,
       });
     }
 
@@ -68,12 +75,15 @@ app.post('/answer', checkToken, function(request, response) {
     answer.save(function(err) {
       if (err) throw err;
 
-      Combination.findOne({ combination: request.combination }, function(err, combination) {
+      Combination.findOne({ combination: request.combination }, function(
+        err,
+        combination
+      ) {
         if (err) throw err;
 
         if (!combination) {
           combination = new Combination({
-            combination: request.combination
+            combination: request.combination,
           });
         }
 
@@ -82,14 +92,15 @@ app.post('/answer', checkToken, function(request, response) {
         combination.save(function(err) {
           if (err) throw err;
 
-          response.status(200).json({ count: answer.count, total: combination.count });
+          response
+            .status(200)
+            .json({ count: answer.count, total: combination.count });
         });
       });
     });
-
   });
 });
 
 app.listen(port, function() {
   process.stdout.write(`ASAW server is listening on port ${port}\n`);
-})
+});

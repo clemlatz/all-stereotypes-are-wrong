@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 
+process.traceDeprecation = true;
+
 module.exports = {
   entry: './assets/build.js',
   output: {
