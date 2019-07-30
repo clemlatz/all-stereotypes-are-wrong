@@ -9,7 +9,7 @@ Diversity Jam (April 15-17, 2016) hosted at Mozilla Paris.
 
 ## Requirements
 
-- Node.js
+- Node.js 10.16.0
 - mongodb
 
 ## Run in dev mode
