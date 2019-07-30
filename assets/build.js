@@ -1,30 +1,33 @@
 'use strict';
 
+import 'whatwg-fetch';
+import 'promise-polyfill';
+
 const Chart = require('chart.js');
 Chart.defaults.global.legend.display = false;
 Chart.defaults.global.tooltips.enabled = false;
 
 const session = {
   round: 0,
-  score: 0
+  score: 0,
 };
 
 function getStats() {
   fetch('/stats')
     .then(function(response) {
       return response.json();
-    }).then(function(json) {
+    })
+    .then(function(json) {
       const counter = document.querySelector('#stats .count');
       counter.innerHTML = json.total;
     });
 }
 
 function sendAnswer(terms, side, couple1, couple2, token) {
-
   const currentLine = document.querySelector('.current.line');
-  currentLine.style.opacity = .5;
+  currentLine.style.opacity = 0.5;
 
-  let [ termA, termB, term1, term2 ] = terms;
+  let [termA, termB, term1, term2] = terms;
   let association1, association2;
 
   if (side == 'left') {
@@ -55,11 +58,13 @@ function sendAnswer(terms, side, couple1, couple2, token) {
     alert('An error occured.');
   });
 
-  req.send(`token=${token}&association1=${association1}&association2=${association2}&couple1=${couple1}&couple2=${couple2}`);
+  req.send(
+    `token=${token}&association1=${association1}&association2=${association2}&couple1=${couple1}&couple2=${couple2}`
+  );
 }
 
 function renderTerms(terms) {
-  const [ termA, termB, term1, term2 ] = terms;
+  const [termA, termB, term1, term2] = terms;
   return `
     <div class="term" id="termA">${termA}</div>
     <div class="term" id="termB">${termB}</div>
@@ -77,19 +82,30 @@ function addAnswer(terms, results, side) {
   const count = parseInt(results.count) > 1 ? parseInt(results.count) - 1 : 1;
   const total = parseInt(results.total) > 1 ? parseInt(results.total) - 1 : 1;
   const percent = Math.floor((count / total) * 100);
-  const success = (percent >= 50);
-  const result = success ? '<span class="fa fa-thumbs-o-up"></span>  <strong>Well done</strong> +1pt' : '<span class="fa fa-thumbs-o-down"></span> <strong>Wrong</strong>';
+  const success = percent >= 50;
+  const result = success
+    ? '<span class="fa fa-thumbs-o-up"></span>  <strong>Well done</strong> +1pt'
+    : '<span class="fa fa-thumbs-o-down"></span> <strong>Wrong</strong>';
   const resultClass = success ? 'correct' : 'wrong';
-  const googleTruth = `https://www.google.com/trends/explore#q=${terms[0]} ${terms[2]}, ${terms[0]} ${terms[3]}, ${terms[1]} ${terms[2]}, ${terms[1]} ${terms[3]}`;
+  const googleTruth = `https://www.google.com/trends/explore#q=${terms[0]} ${
+    terms[2]
+  }, ${terms[0]} ${terms[3]}, ${terms[1]} ${terms[2]}, ${terms[1]} ${terms[3]}`;
   const pieColor = success ? '#46BFBD' : '#F7464A';
 
   let twitterMessage;
   if (side == 'left') {
-    twitterMessage = `${terms[0]} = ${terms[2]}\n${terms[1]} = ${terms[3]}\n`.toUpperCase();
+    twitterMessage = `${terms[0]} = ${terms[2]}\n${terms[1]} = ${
+      terms[3]
+    }\n`.toUpperCase();
   } else {
-    twitterMessage = `${terms[0]} = ${terms[3]}\n${terms[1]} = ${terms[2]}\n`.toUpperCase();
+    twitterMessage = `${terms[0]} = ${terms[3]}\n${terms[1]} = ${
+      terms[2]
+    }\n`.toUpperCase();
   }
-  const twitterShare = 'https://twitter.com/home?status=' + encodeURI(twitterMessage) + '%23AllStereotypesAreWrong%0Ahttp://asaw.nokto.net';
+  const twitterShare =
+    'https://twitter.com/home?status=' +
+    encodeURI(twitterMessage) +
+    '%23AllStereotypesAreWrong%0Ahttp://asaw.nokto.net';
 
   currentLine.style.marginTop = '-156px';
 
@@ -98,14 +114,17 @@ function addAnswer(terms, results, side) {
   }
 
   line.classList.add('line');
-  line.innerHTML  = `
+  line.innerHTML =
+    `
     <div class="left">
       <p class="round">${session.round}/10</p>
       <p class="share">
         > <a href="${twitterShare}" target="_blank">Share this stereotype</a>
       </p>
     </div>
-    <div class="terms ${side}Choice">` + renderTerms(terms) + `</div>
+    <div class="terms ${side}Choice">` +
+    renderTerms(terms) +
+    `</div>
     <div class="right ${resultClass}">
       <div class="pieContainer">
         <canvas class="pie" width="70" height="70"></canvas>
@@ -119,14 +138,16 @@ function addAnswer(terms, results, side) {
 
   const pie = line.querySelector('.pie');
   new Chart(pie, {
-    type:'pie',
+    type: 'pie',
     data: {
-      labels: [ 'Your choice', 'The other choice' ],
-      datasets: [{
-        data: [count, (total - count)],
-        backgroundColor: [ pieColor, '#cccccc' ]
-      }]
-    }
+      labels: ['Your choice', 'The other choice'],
+      datasets: [
+        {
+          data: [count, total - count],
+          backgroundColor: [pieColor, '#cccccc'],
+        },
+      ],
+    },
   });
 
   getStats();
@@ -140,12 +161,14 @@ function addAnswer(terms, results, side) {
 
 function addFinalScore() {
   const answers = document.querySelector('#answers');
-  const line    = document.createElement('div');
+  const line = document.createElement('div');
   line.classList.add('line');
   line.classList.add('animated');
   line.style.marginTop = '-156px';
 
-  line.innerHTML = `<div class="final-score">~ FINAL SCORE: ${session.score}/10 ~</div>`;
+  line.innerHTML = `<div class="final-score">~ FINAL SCORE: ${
+    session.score
+  }/10 ~</div>`;
   answers.insertBefore(line, answers.firstChild);
 
   session.score = 0;
@@ -161,22 +184,21 @@ function addFinalScore() {
 }
 
 function getQuestion() {
-
   fetch('/couples')
     .then(function(response) {
       return response.json();
-    }).then(function(json) {
-
+    })
+    .then(function(json) {
       incrementRound();
 
       const couples = json.couples;
-      const token   = json.token;
+      const token = json.token;
       const couple1 = couples[0].id;
-      const termA   = couples[0].firstTerm.en;
-      const termB   = couples[0].secondTerm.en;
+      const termA = couples[0].firstTerm.en;
+      const termB = couples[0].secondTerm.en;
       const couple2 = couples[1].id;
-      const term1   = couples[1].firstTerm.en;
-      const term2   = couples[1].secondTerm.en;
+      const term1 = couples[1].firstTerm.en;
+      const term2 = couples[1].secondTerm.en;
 
       const currentLine = document.querySelector('.current.line');
       const termsElement = currentLine.querySelector('.terms');
@@ -208,14 +230,26 @@ function getQuestion() {
       });
 
       leftZone.addEventListener('click', function() {
-        sendAnswer([termA, termB, term1, term2], 'left', couple1, couple2, token);
+        sendAnswer(
+          [termA, termB, term1, term2],
+          'left',
+          couple1,
+          couple2,
+          token
+        );
       });
       rightZone.addEventListener('click', function() {
-        sendAnswer([termA, termB, term1, term2], 'right', couple1, couple2, token);
+        sendAnswer(
+          [termA, termB, term1, term2],
+          'right',
+          couple1,
+          couple2,
+          token
+        );
       });
 
       currentLine.classList.add('animated');
-      window.setTimeout(function () {
+      window.setTimeout(function() {
         currentLine.style.marginTop = 0;
         currentLine.style.opacity = 1;
 
@@ -225,8 +259,6 @@ function getQuestion() {
           currentLine.classList.remove('animated');
         }, 1000);
       }, 1000);
-
-
     });
 }
 
@@ -237,8 +269,6 @@ function incrementRound() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-
   getQuestion();
   getStats();
-
 });
