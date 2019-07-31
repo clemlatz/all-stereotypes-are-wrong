@@ -24,6 +24,7 @@
     "node": "10.16.0"
   },
   "dependencies": {
+    "babel-core": "6",
     "body-parser": "^1.15.0",
     "chart.js": "^2.0.2",
     "concurrently": "^4.1.1",
