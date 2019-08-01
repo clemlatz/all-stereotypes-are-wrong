@@ -7,18 +7,25 @@ Diversity Jam (April 15-17, 2016) hosted at Mozilla Paris.
 
 [Play it](http://asaw.nokto.net/)
 
-## Requirements
+## Run using docker
 
-- Node.js 10.16.0
-- MySQL 5.7
+```console
+docker run -d -p 3300:8080 \
+  --env DB=mysql://user:pass@host/base \
+  --restart=unless-stopped \
+  --name asaw \
+  iwazaru/all-stereotypes-are-wrong
+```
 
 ## Run in dev mode
 
-`DB=mysql://user:pass@host:port/base yarn dev`
+### Requirements
+- Node.js 10.16.0
+- MySQL 5.7
 
-## Run in production
-
-`DB=mysql://user:pass@host:port/base yarn start`
+```console
+DB=mysql://user:pass@host:port/base yarn dev
+```
 
 ## Todo
 
@@ -30,6 +37,7 @@ Diversity Jam (April 15-17, 2016) hosted at Mozilla Paris.
 ### DEV
 
 - Replaced mongodb with MySQL
+- Added Docker support
 - Upgraded dependencies to fix security flaws
 
 ### 1.0.0 (2016-04-21)
