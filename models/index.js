@@ -6,7 +6,12 @@ var Sequelize = require('sequelize');
 var basename = path.basename(__filename);
 var db = {};
 
-const databaseUrl = process.env.DB || 'mysql://localhost/asaw';
+const databaseUrl = process.env.DB;
+if (typeof databaseUrl === 'undefined') {
+  process.stderr.write('DB env variable should be defined.\n');
+  process.exit(1);
+}
+
 const sequelize = new Sequelize(databaseUrl, {
   dialect: 'mysql',
 });
