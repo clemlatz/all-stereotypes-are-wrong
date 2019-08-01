@@ -10,15 +10,15 @@ Diversity Jam (April 15-17, 2016) hosted at Mozilla Paris.
 ## Requirements
 
 - Node.js 10.16.0
-- mongodb
+- MySQL 5.7
 
 ## Run in dev mode
 
-`yarn dev`
+`DB=mysql://user:pass@host:port/base yarn dev`
 
 ## Run in production
 
-`yarn start`
+`DB=mysql://user:pass@host:port/base yarn start`
 
 ## Todo
 
@@ -29,7 +29,8 @@ Diversity Jam (April 15-17, 2016) hosted at Mozilla Paris.
 
 ### DEV
 
-- Upgrade dependencies to fix security flaws
+- Replaced mongodb with MySQL
+- Upgraded dependencies to fix security flaws
 
 ### 1.0.0 (2016-04-21)
 
