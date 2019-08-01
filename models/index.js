@@ -14,6 +14,7 @@ if (typeof databaseUrl === 'undefined') {
 
 const sequelize = new Sequelize(databaseUrl, {
   dialect: 'mysql',
+  logging: false,
 });
 sequelize
   .authenticate()
