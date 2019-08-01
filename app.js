@@ -1,55 +1,39 @@
 'use strict';
 
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const port = process.env.PORT || 3000;
-const mongo_url = process.env.MONGO_URL || 'mongodb://localhost/asaw';
-
-const Answer = require('./models/answer');
-const Combination = require('./models/combination');
-const Token = require('./models/token');
-
 const couples = require('./data/couples');
-
 const checkToken = require('./middlewares/check-token');
-
 const getCombinationId = require('./helpers/get-combination-id');
 
+const { sequelize, Answer, Combination, Token } = require('./models');
+sequelize.sync();
+
+const port = process.env.PORT || 3000;
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-mongoose.connect(mongo_url, {
-  useMongoClient: true,
-});
-process.stdout.write(`Mongoose connected to ${mongo_url}\n`);
-
-app.get('/couples', function(request, response) {
+app.get('/couples', async function(request, response) {
   const couple1 = couples.getRandom();
   const couple2 = couples.getRandom(couple1);
 
   const combination = getCombinationId(couple1.id, couple2.id);
-  const token = new Token({ combination: combination });
-
-  token.save().then(function(token) {
-    response.json({ couples: [couple1, couple2], token: token.token });
-  });
+  const token = await Token.create({ combination });
+  response.json({ couples: [couple1, couple2], token: token.token });
 });
 
-app.get('/stats', function(request, response) {
-  Combination.find({}, function(err, combinations) {
-    if (err) throw err;
-    let total = 0;
-    for (let i = 0, c = combinations.length; i < c; i++) {
-      total += combinations[i].count;
-    }
-    response.json({ total: total });
-  });
+app.get('/stats', async function(request, response) {
+  const combinations = await Combination.findAll();
+  let total = 0;
+  for (let i = 0, c = combinations.length; i < c; i++) {
+    total += combinations[i].count;
+  }
+  response.json({ total });
 });
 
-app.post('/answer', checkToken, function(request, response) {
+app.post('/answer', checkToken, async function(request, response) {
   const association1 = request.body.association1
     .split(',')
     .sort()
@@ -60,45 +44,37 @@ app.post('/answer', checkToken, function(request, response) {
     .join(',');
   const answerContent = [association1, association2].sort().join(';');
 
-  Answer.findOne({ answer: answerContent }, function(err, answer) {
-    if (err) throw err;
-
+  try {
+    let answer = await Answer.findOne({ answer: answerContent });
     if (!answer) {
-      answer = new Answer({
+      answer = await Answer.create({
         answer: answerContent,
         combination: request.combination,
       });
     }
-
     answer.count = answer.count + 1;
+    await Answer.update({ count: answer.count }, { where: { id: answer.id } });
 
-    answer.save(function(err) {
-      if (err) throw err;
-
-      Combination.findOne({ combination: request.combination }, function(
-        err,
-        combination
-      ) {
-        if (err) throw err;
-
-        if (!combination) {
-          combination = new Combination({
-            combination: request.combination,
-          });
-        }
-
-        combination.count = combination.count + 1;
-
-        combination.save(function(err) {
-          if (err) throw err;
-
-          response
-            .status(200)
-            .json({ count: answer.count, total: combination.count });
-        });
-      });
+    let combination = await Combination.findOne({
+      combination: request.combination,
     });
-  });
+    if (!combination) {
+      combination = await Combination.create({
+        combination: request.combination,
+      });
+    }
+    combination.count = combination.count + 1;
+    await Combination.update(
+      { count: combination.count },
+      { where: { id: combination.id } }
+    );
+
+    response
+      .status(200)
+      .json({ count: answer.count, total: combination.count });
+  } catch (error) {
+    response.status(500).json({ error });
+  }
 });
 
 app.listen(port, function() {
