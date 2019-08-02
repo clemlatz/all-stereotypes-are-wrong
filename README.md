@@ -34,7 +34,7 @@ DB=mysql://user:pass@host:port/base yarn dev
 
 ## Changelog
 
-### DEV
+### 2.0.0 (2019-08-02)
 
 - Replaced mongodb with MySQL
 - Added Docker support
