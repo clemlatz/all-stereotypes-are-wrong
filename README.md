@@ -5,7 +5,7 @@
 [Clément Bourgoin](https://twitter.com/ClementBourgoin) (code) during the
 Diversity Jam (April 15-17, 2016) hosted at Mozilla Paris.
 
-[Play it](http://asaw.nokto.net/)
+Play it: https://asaw.iwazaru.fr/
 
 ## Run using docker
 
