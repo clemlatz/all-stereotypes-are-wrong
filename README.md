@@ -35,7 +35,7 @@ DB=mysql://user:pass@host:port/base yarn dev
 
 ## Changelog
 
-### DEV
+### 2.0.1 (2019-11-21)
 
 - Fixed displaying statistics when answering
 - Upgraded dependencies to fix security flaws
