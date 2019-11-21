@@ -20,6 +20,7 @@ docker run -d -p 3300:8080 \
 ## Run in dev mode
 
 ### Requirements
+
 - Node.js 10.16.0
 - MySQL 5.7
 
@@ -33,6 +34,11 @@ DB=mysql://user:pass@host:port/base yarn dev
 - Don't ask the same question twice
 
 ## Changelog
+
+### DEV
+
+- Fixed displaying statistics when answering
+- Upgraded dependencies to fix security flaws
 
 ### 2.0.0 (2019-08-02)
 

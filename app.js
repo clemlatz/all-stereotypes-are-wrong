@@ -45,7 +45,7 @@ app.post('/answer', checkToken, async function(request, response) {
   const answerContent = [association1, association2].sort().join(';');
 
   try {
-    let answer = await Answer.findOne({ answer: answerContent });
+    let answer = await Answer.findOne({ where: { answer: answerContent } });
     if (!answer) {
       answer = await Answer.create({
         answer: answerContent,
@@ -56,7 +56,9 @@ app.post('/answer', checkToken, async function(request, response) {
     await Answer.update({ count: answer.count }, { where: { id: answer.id } });
 
     let combination = await Combination.findOne({
-      combination: request.combination,
+      where: {
+        combination: request.combination,
+      },
     });
     if (!combination) {
       combination = await Combination.create({
