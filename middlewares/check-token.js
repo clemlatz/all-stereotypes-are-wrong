@@ -8,8 +8,10 @@ module.exports = async function(request, response, next) {
   );
 
   const token = await Token.findOne({
-    token: request.body.token,
-    combination: request.combination,
+    where: {
+      token: request.body.token,
+      combination: request.combination,
+    },
   });
 
   if (!token) {
