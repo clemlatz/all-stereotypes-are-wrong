@@ -10,12 +10,12 @@ function App() {
 
   // Get answers count
   useEffect(() => {
-    async function fetchData() {
+    async function fetchStats() {
       const response = await fetch('/stats');
       const stats = await response.json();
       setAnswers(stats.total);
     }
-    fetchData();
+    fetchStats();
   }, []);
 
   return (

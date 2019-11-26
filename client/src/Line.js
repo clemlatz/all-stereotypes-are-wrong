@@ -4,15 +4,16 @@ import './Line.css';
 
 function Line({ round }) {
   const [currentCouples, setCurrentCouples] = useState(null);
+  const [currentChoice, setCurrentChoice] = useState(null);
 
   // Get question couples
   useEffect(() => {
-    async function fetchData() {
+    async function fetchCouples() {
       const response = await fetch('/couples');
       const result = await response.json();
       setCurrentCouples(result.couples);
     }
-    fetchData();
+    fetchCouples();
   }, []);
 
   if (currentCouples === null) {
@@ -24,22 +25,31 @@ function Line({ round }) {
   const term1 = currentCouples[1].firstTerm.en;
   const term2 = currentCouples[1].secondTerm.en;
 
+  let termsClass = ['terms'];
+  termsClass.push(`${currentChoice}-choice`);
+
   return (
     <div className="line">
       <div className="left">
         <span className="round">{round}/10</span>
       </div>
-      <div id="terms" className="terms">
+      <div className={termsClass.join(' ')}>
         <div className="term termA">{termA}</div>
         <div className="term termB">{termB}</div>
         <div className="term term1">{term1}</div>
         <div className="term term2">{term2}</div>
-        <div className="equal" id="equalLeft">
-          =
-        </div>
-        <div className="equal" id="equalRight">
-          =
-        </div>
+        <div className="equal equal-left">=</div>
+        <div className="equal equal-right">=</div>
+        <div
+          className="zone left-zone"
+          onMouseEnter={() => setCurrentChoice('left')}
+          onMouseLeave={() => setCurrentChoice(null)}
+        ></div>
+        <div
+          className="zone right-zone"
+          onMouseEnter={() => setCurrentChoice('right')}
+          onMouseLeave={() => setCurrentChoice(null)}
+        ></div>
       </div>
       <div className="right"></div>
     </div>
