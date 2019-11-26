@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
+
+import Line from './Line';
+
 import './App.css';
 
 function App() {
+  const [round] = useState(1);
   const [answers, setAnswers] = useState('...');
 
+  // Get answers count
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('/stats');
@@ -40,13 +45,8 @@ function App() {
 
         <div id="stats">{answers} stereotypes so far</div>
 
-        <div className="current line">
-          <div className="left">
-            <span className="round"></span>
-          </div>
-          <div id="terms" className="terms"></div>
-          <div className="right"></div>
-        </div>
+        {/* Current line */}
+        <Line round={round}></Line>
 
         <div id="answers"></div>
       </div>

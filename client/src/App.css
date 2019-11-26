@@ -76,13 +76,6 @@ h1 {
   text-transform: none;
 }
 
-.terms {
-  height: 125px;
-  margin: auto;
-  position: relative;
-  width: 60%;
-}
-
 .right {
   font-size: 0.7em;
   text-transform: none;
@@ -119,102 +112,7 @@ h1 {
   width: 100%;
 }
 
-/* TERMS DEFAULT */
-
-.term {
-  display: inline-block;
-  position: absolute;
-  transition: 250ms;
-  width: 50%;
-}
-
-#termA {
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-}
-
-#termA::before {
-  content: '<- ';
-}
-
-#termA::after {
-  content: ' ->';
-}
-
-#termB {
-  left: 50%;
-  top: 100%;
-  transform: translate(-50%, -100%);
-}
-
-#term1 {
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#term2 {
-  left: 100%;
-  top: 50%;
-  transform: translate(-100%, -50%);
-}
-
 /* LEFT CHOICE */
-
-.terms.leftChoice #termA {
-  left: 0;
-  top: 33%;
-  transform: translateY(-50%);
-}
-.terms.leftChoice #termA::after {
-  content: '';
-}
-.terms.leftChoice #termA::before {
-  content: '';
-}
-
-.terms.leftChoice #term1 {
-  top: 66%;
-}
-
-.terms.leftChoice #termB {
-  left: 100%;
-  top: 33%;
-  transform: translate(-100%, -50%);
-}
-
-.terms.leftChoice #term2 {
-  top: 66%;
-}
-
-/* RIGHT CHOICE */
-
-.terms.rightChoice #termA {
-  left: 100%;
-  top: 33%;
-  transform: translate(-100%, -50%);
-}
-.terms.rightChoice #termA::after {
-  content: '';
-}
-.terms.rightChoice #termA::before {
-  content: '';
-}
-
-.terms.rightChoice #term1 {
-  top: 66%;
-}
-
-.terms.rightChoice #termB {
-  left: 0%;
-  top: 33%;
-  transform: translateY(-50%);
-}
-
-.terms.rightChoice #term2 {
-  top: 66%;
-}
 
 /* CLICK ZONES */
 
