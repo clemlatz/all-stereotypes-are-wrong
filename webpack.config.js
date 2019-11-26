@@ -3,7 +3,7 @@ const webpack = require('webpack');
 process.traceDeprecation = true;
 
 module.exports = {
-  entry: './assets/build.js',
+  entry: './client/client.js',
   output: {
     path: __dirname + '/public/',
     filename: 'bundle.js',
