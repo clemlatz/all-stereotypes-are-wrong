@@ -1,0 +1,17 @@
+{
+  "name": "all-stereotypes-are-wrong",
+  "version": "2.0.1",
+  "description": "A game about diversity",
+  "main": " ",
+  "repository": "git@github.com:iwazaru/all-stereotypes-are-wrong.git",
+  "author": "Clément Bourgoin <c@iwzr.fr>",
+  "license": "MIT",
+  "scripts": {
+    "dev:client": "yarn --cwd \"./client\" start",
+    "dev:server": "yarn --cwd \"./server\" start",
+    "dev": "concurrently \"yarn dev:client\" \"yarn dev:server\""
+  },
+  "dependencies": {
+    "concurrently": "^5.0.0"
+  }
+}

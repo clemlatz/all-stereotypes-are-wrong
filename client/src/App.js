@@ -13,28 +13,30 @@ function App() {
         <div id="social">
           <a
             href="https://twitter.com/search?q=%23AllStereotypesAreWrong"
+            rel="noopener noreferrer"
             target="_blank"
           >
-            <span class="fa fa-twitter-square"></span>
+            <span className="fa fa-twitter-square"></span>
           </a>{' '}
           <a
             href="https://github.com/iwazaru/all-stereotypes-are-wrong"
+            rel="noopener noreferrer"
             target="_blank"
           >
-            <span class="fa fa-github-square"></span>
+            <span className="fa fa-github-square"></span>
           </a>
         </div>
 
         <div id="stats">
-          <span class="count"></span> stereotypes so far
+          <span className="count"></span> stereotypes so far
         </div>
 
-        <div class="current line">
-          <div class="left">
-            <span class="round"></span>
+        <div className="current line">
+          <div className="left">
+            <span className="round"></span>
           </div>
-          <div id="terms" class="terms"></div>
-          <div class="right"></div>
+          <div id="terms" className="terms"></div>
+          <div className="right"></div>
         </div>
 
         <div id="answers"></div>

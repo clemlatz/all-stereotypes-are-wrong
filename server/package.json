@@ -1,5 +1,5 @@
 {
-  "name": "all-stereotypes-are-wrong",
+  "name": "asaw-server",
   "version": "2.0.1",
   "description": "A game about diversity",
   "main": "app.js",
@@ -23,7 +23,6 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "chart.js": "^2.0.2",
-    "concurrently": "^4.1.1",
     "express": "^4.13.4",
     "mysql2": "^1.6.5",
     "promise-polyfill": "^8.1.3",
