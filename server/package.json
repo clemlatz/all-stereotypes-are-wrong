@@ -23,7 +23,7 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "chart.js": "^2.0.2",
-    "express": "^4.13.4",
+    "express": "^4.16",
     "mysql2": "^1.6.5",
     "promise-polyfill": "^8.1.3",
     "sequelize": "^5.15.1",
