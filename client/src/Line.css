@@ -6,6 +6,10 @@
   display: flex;
 }
 
+.line.loading {
+  opacity: 0.5;
+}
+
 .line.animated {
   transition: all 1s;
 }
