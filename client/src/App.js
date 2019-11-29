@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Line from './Line';
+import Question from './Question';
 
 import './App.css';
 
@@ -46,7 +46,14 @@ function App() {
         <div id="stats">{stereotypesCount} stereotypes so far</div>
 
         {/* Current line */}
-        <Line round={round} setStereotypesCount={setStereotypesCount}></Line>
+        <Question
+          round={round}
+          setStereotypesCount={setStereotypesCount}
+        ></Question>
+
+        {/* {answers.forEach(answer => (
+          <Line answer={answer} />
+        ))} */}
 
         <div id="stereotypescount"></div>
       </div>

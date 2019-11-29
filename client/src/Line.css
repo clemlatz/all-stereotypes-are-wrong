@@ -6,68 +6,45 @@
   display: flex;
 }
 
-.line.loading {
-  opacity: 0.5;
-}
-
 .line.animated {
   transition: all 1s;
 }
 
-.left {
+.line .left {
   width: 20%;
 }
 
-#answers .line {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.round {
+.line .round {
   font-size: 2em;
   margin: 0.35em 0;
 }
 
-.share {
+.answer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.answer .share {
   font-size: 0.7em;
   text-transform: none;
 }
 
-.terms {
+.line .terms {
   height: 125px;
   margin: auto;
   position: relative;
   width: 60%;
 }
 
-.right {
+.line .right {
   font-size: 0.7em;
   text-transform: none;
   width: 20%;
 }
 
-.pieContainer {
+.answer .pieContainer {
   height: 50px;
   margin: auto;
   width: 50px;
-}
-
-.equal {
-  animation: opacity 250ms;
-  display: inline-block;
-  position: absolute;
-  opacity: 0;
-  top: 49%;
-  width: 50%;
-}
-
-.equal-left {
-  left: 0%;
-  transform: translateY(-50%);
-}
-
-.equal-right {
-  left: 100%;
-  transform: translate(-100%, -50%);
 }
 
 .final-score {
@@ -77,40 +54,40 @@
 
 /* TERMS NO CHOICE */
 
-.term {
+.line .term {
   display: inline-block;
   position: absolute;
   transition: 250ms;
   width: 50%;
 }
 
-.termA {
+.line .termA {
   left: 50%;
   top: 0;
   transform: translateX(-50%);
 }
 
-.termA::before {
+.line .termA::before {
   content: '<- ';
 }
 
-.termA::after {
+.line .termA::after {
   content: ' ->';
 }
 
-.termB {
+.line .termB {
   left: 50%;
   top: 100%;
   transform: translate(-50%, -100%);
 }
 
-.term1 {
+.line .term1 {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.term2 {
+.line .term2 {
   left: 100%;
   top: 50%;
   transform: translate(-100%, -50%);
@@ -118,81 +95,58 @@
 
 /* LEFT CHOICE */
 
-.terms.left-choice .termA {
+.line .terms.left-choice .termA {
   left: 0;
   top: 33%;
   transform: translateY(-50%);
 }
-.terms.left-choice .termA::after {
+.line .terms.left-choice .termA::after {
   content: '';
 }
-.terms.left-choice .termA::before {
+.line .terms.left-choice .termA::before {
   content: '';
 }
 
-.terms.left-choice .term1 {
+.line .terms.left-choice .term1 {
   top: 66%;
 }
 
-.terms.left-choice .termB {
+.line .terms.left-choice .termB {
   left: 100%;
   top: 33%;
   transform: translate(-100%, -50%);
 }
 
-.terms.left-choice .term2 {
+.line .terms.left-choice .term2 {
   top: 66%;
 }
 
 /* RIGHT CHOICE */
 
-.terms.right-choice .termA {
+.line .terms.right-choice .termA {
   left: 100%;
   top: 33%;
   transform: translate(-100%, -50%);
 }
-.terms.right-choice .termA::after {
+.line .terms.right-choice .termA::after {
   content: '';
 }
-.terms.right-choice .termA::before {
+.line .terms.right-choice .termA::before {
   content: '';
 }
 
-.terms.right-choice .term1 {
+.line .terms.right-choice .term1 {
   top: 66%;
 }
 
-.terms.right-choice .termB {
+.line .terms.right-choice .termB {
   left: 0%;
   top: 33%;
   transform: translateY(-50%);
 }
 
-.terms.right-choice .term2 {
+.line .terms.right-choice .term2 {
   top: 66%;
-}
-
-/* CLICK ZONES */
-
-.zone {
-  height: 100%;
-  cursor: pointer;
-  position: absolute;
-  width: 50%;
-}
-
-.right-zone {
-  border-left: 1px solid black;
-  opacity: 0;
-  right: 0;
-  transition: 250ms;
-}
-
-.right-choice .right-zone,
-.left-choice .right-zone,
-.left-choice .equal,
-.right-choice .equal {
-  opacity: 0.5;
 }
 
 @media (min-width: 768px) {
