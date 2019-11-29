@@ -8,7 +8,8 @@ async function sendAnswer(
   association1,
   association2,
   token,
-  setIsLoading
+  setIsLoading,
+  setStereotypesCount
 ) {
   try {
     setIsLoading(true);
@@ -30,15 +31,14 @@ async function sendAnswer(
     if (json.error) {
       alert(json.error);
     } else {
-      // const results = JSON.parse(req.response);
-      // addAnswer(terms, results, side);
+      setStereotypesCount(json.stats.stereotypes);
     }
   } catch (error) {
     alert(`Error: ${error}`);
   }
 }
 
-function Line({ round }) {
+function Line({ round, setStereotypesCount }) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [currentChoice, setCurrentChoice] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -93,7 +93,8 @@ function Line({ round }) {
               [termA, term1].join(),
               [termB, term2].join(),
               token,
-              setIsLoading
+              setIsLoading,
+              setStereotypesCount
             )
           }
         ></div>
@@ -108,7 +109,8 @@ function Line({ round }) {
               [termA, term2].join(),
               [termB, term1].join(),
               token,
-              setIsLoading
+              setIsLoading,
+              setStereotypesCount
             )
           }
         ></div>

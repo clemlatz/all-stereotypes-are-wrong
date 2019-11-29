@@ -6,14 +6,14 @@ import './App.css';
 
 function App() {
   const [round] = useState(1);
-  const [answers, setAnswers] = useState('...');
+  const [stereotypesCount, setStereotypesCount] = useState('...');
 
-  // Get answers count
+  // Get stereotypescount count
   useEffect(() => {
     async function fetchStats() {
       const response = await fetch('/stats');
       const stats = await response.json();
-      setAnswers(stats.total);
+      setStereotypesCount(stats.stereotypes);
     }
     fetchStats();
   }, []);
@@ -43,12 +43,12 @@ function App() {
           </a>
         </div>
 
-        <div id="stats">{answers} stereotypes so far</div>
+        <div id="stats">{stereotypesCount} stereotypes so far</div>
 
         {/* Current line */}
-        <Line round={round}></Line>
+        <Line round={round} setStereotypesCount={setStereotypesCount}></Line>
 
-        <div id="answers"></div>
+        <div id="stereotypescount"></div>
       </div>
     </div>
   );
