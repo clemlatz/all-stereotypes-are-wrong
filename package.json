@@ -7,11 +7,11 @@
   "author": "Clément Bourgoin <c@iwzr.fr>",
   "license": "MIT",
   "scripts": {
-    "dev:client": "yarn --cwd \"./client\" start",
-    "dev:server": "yarn --cwd \"./server\" start",
+    "dev:client": "BROWSER=none yarn --cwd \"./client\" start",
+    "dev:server": "yarn --cwd \"./server\" dev",
     "dev": "concurrently \"yarn dev:client\" \"yarn dev:server\""
   },
-  "dependencies": {
+  "devDependencies": {
     "concurrently": "^5.0.0"
   }
 }
