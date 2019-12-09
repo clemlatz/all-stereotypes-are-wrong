@@ -43,12 +43,7 @@ export default function Line({
               onMouseEnter={() => onSideChoose('left')}
               onMouseLeave={() => onSideChoose(null)}
               onClick={() =>
-                onSendAnswer(
-                  couple1.id,
-                  couple2.id,
-                  [termA, term1].join(),
-                  [termB, term2].join()
-                )
+                onSendAnswer([termA, term1].join(), [termB, term2].join())
               }
             ></div>
             <div
@@ -56,12 +51,7 @@ export default function Line({
               onMouseEnter={() => onSideChoose('right')}
               onMouseLeave={() => onSideChoose(null)}
               onClick={() =>
-                onSendAnswer(
-                  couple1.id,
-                  couple2.id,
-                  [termA, term2].join(),
-                  [termB, term1].join()
-                )
+                onSendAnswer([termA, term2].join(), [termB, term1].join())
               }
             ></div>
           </Fragment>
