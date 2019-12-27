@@ -5,23 +5,26 @@ import Line from './Line';
 import './Question.css';
 
 async function sendAnswer(
-  couple1,
-  couple2,
+  round,
+  couples,
   association1,
   association2,
+  choice,
   token,
   setIsLoading,
-  setStereotypesCount
+  setStereotypesCount,
+  setAnswers
 ) {
   try {
+    const [couple1, couple2] = couples;
     setIsLoading(true);
     const response = await fetch('/answer', {
       method: 'POST',
       body: JSON.stringify({
         association1,
         association2,
-        couple1,
-        couple2,
+        couple1: couple1.id,
+        couple2: couple2.id,
         token,
       }),
       headers: {
@@ -31,16 +34,26 @@ async function sendAnswer(
     setIsLoading(false);
     const json = await response.json();
     if (json.error) {
-      alert(json.error);
+      throw json.error;
     } else {
       setStereotypesCount(json.stats.stereotypes);
+      setAnswers(answers => {
+        return [
+          ...answers,
+          {
+            round,
+            couples,
+            choice,
+          },
+        ];
+      });
     }
   } catch (error) {
     alert(`Error: ${error}`);
   }
 }
 
-export default function Question({ round, setStereotypesCount }) {
+export default function Question({ round, setStereotypesCount, setAnswers }) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [currentChoice, setCurrentChoice] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -73,13 +86,15 @@ export default function Question({ round, setStereotypesCount }) {
       onSideChoose={setCurrentChoice}
       onSendAnswer={(association1, association2) =>
         sendAnswer(
-          couple1.id,
-          couple2.id,
+          round,
+          couples,
           association1,
           association2,
+          currentChoice,
           token,
           setIsLoading,
-          setStereotypesCount
+          setStereotypesCount,
+          setAnswers
         )
       }
     />

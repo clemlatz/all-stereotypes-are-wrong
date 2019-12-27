@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import Line from './Line';
 import Question from './Question';
 
 import './App.css';
@@ -7,6 +8,7 @@ import './App.css';
 function App() {
   const [round] = useState(1);
   const [stereotypesCount, setStereotypesCount] = useState('...');
+  const [answers, setAnswers] = useState([], 'answers');
 
   // Get stereotypescount count
   useEffect(() => {
@@ -49,13 +51,24 @@ function App() {
         <Question
           round={round}
           setStereotypesCount={setStereotypesCount}
+          setAnswers={setAnswers}
         ></Question>
 
-        {/* {answers.forEach(answer => (
-          <Line answer={answer} />
-        ))} */}
-
-        <div id="stereotypescount"></div>
+        <div className="answers">
+          {answers.map(({ round, couples, choice }) => {
+            const [couple1, couple2] = couples;
+            return (
+              <Line
+                key={round}
+                type="answer"
+                round={round}
+                couple1={couple1}
+                couple2={couple2}
+                currentChoice={choice}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
