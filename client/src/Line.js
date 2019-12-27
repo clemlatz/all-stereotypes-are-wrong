@@ -56,10 +56,10 @@ export default function Line({
         <div className="term termB">{termB}</div>
         <div className="term term1">{term1}</div>
         <div className="term term2">{term2}</div>
+        <div className="equal equal-left">=</div>
+        <div className="equal equal-right">=</div>
         {type === 'question' && (
           <Fragment>
-            <div className="equal equal-left">=</div>
-            <div className="equal equal-right">=</div>
             <div
               className="zone left-zone"
               onMouseEnter={() => onSideChoose('left')}

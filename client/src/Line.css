@@ -68,11 +68,11 @@
 }
 
 .line .termA::before {
-  content: '<- ';
+  content: "<- ";
 }
 
 .line .termA::after {
-  content: ' ->';
+  content: " ->";
 }
 
 .line .termB {
@@ -101,10 +101,10 @@
   transform: translateY(-50%);
 }
 .line .terms.left-choice .termA::after {
-  content: '';
+  content: "";
 }
 .line .terms.left-choice .termA::before {
-  content: '';
+  content: "";
 }
 
 .line .terms.left-choice .term1 {
@@ -129,10 +129,10 @@
   transform: translate(-100%, -50%);
 }
 .line .terms.right-choice .termA::after {
-  content: '';
+  content: "";
 }
 .line .terms.right-choice .termA::before {
-  content: '';
+  content: "";
 }
 
 .line .terms.right-choice .term1 {
@@ -149,13 +149,39 @@
   top: 66%;
 }
 
+.line .equal {
+  animation: opacity 250ms;
+  display: inline-block;
+  position: absolute;
+  opacity: 0;
+  top: 49%;
+  width: 50%;
+}
+
+.line .equal-left {
+  left: 0%;
+  transform: translateY(-50%);
+}
+
+.line .equal-right {
+  left: 100%;
+  transform: translate(-100%, -50%);
+}
+
+.line .right-choice .right-zone,
+.line .left-choice .right-zone,
+.line .left-choice .equal,
+.line .right-choice .equal {
+  opacity: 0.5;
+}
+
 @media (min-width: 768px) {
   .terms .termA::after {
-    content: '';
+    content: "";
   }
 
   .terms .termA::before {
-    content: '';
+    content: "";
   }
 
   .left {
@@ -187,10 +213,10 @@
   }
 
   .terms #termA::after {
-    content: '';
+    content: "";
   }
 
   .terms #termA::before {
-    content: '';
+    content: "";
   }
 }

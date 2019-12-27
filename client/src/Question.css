@@ -2,25 +2,6 @@
   opacity: 0.5;
 }
 
-.question .equal {
-  animation: opacity 250ms;
-  display: inline-block;
-  position: absolute;
-  opacity: 0;
-  top: 49%;
-  width: 50%;
-}
-
-.question .equal-left {
-  left: 0%;
-  transform: translateY(-50%);
-}
-
-.question .equal-right {
-  left: 100%;
-  transform: translate(-100%, -50%);
-}
-
 /* CLICK ZONES */
 
 .question .zone {
@@ -35,11 +16,4 @@
   opacity: 0;
   right: 0;
   transition: 250ms;
-}
-
-.question .right-choice .right-zone,
-.question .left-choice .right-zone,
-.question .left-choice .equal,
-.question .right-choice .equal {
-  opacity: 0.5;
 }
