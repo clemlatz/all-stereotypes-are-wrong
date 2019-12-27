@@ -24,10 +24,32 @@ export default function Line({
   let termsClass = ['terms'];
   termsClass.push(`${currentChoice}-choice`);
 
+  let twitter = null;
+  if (type === 'answer') {
+    let twitterMessage;
+    if (currentChoice === 'left') {
+      twitterMessage = `${termA} = ${term1}\n${termB} = ${term2}\n`.toUpperCase();
+    } else {
+      twitterMessage = `${termA} = ${term2}\n${termB} = ${term1}\n`.toUpperCase();
+    }
+    twitter =
+      'https://twitter.com/intent/tweet?text=' +
+      encodeURI(twitterMessage) +
+      '%23AllStereotypesAreWrong%0Ahttps://asaw.iwazaru.fr';
+  }
+
   return (
     <div className={lineClass.join(' ')}>
       <div className="left">
         <span className="round">{round}/10</span>
+        {twitter && (
+          <p className="share">
+            >{' '}
+            <a href={twitter} target="_blank" rel="noopener noreferrer">
+              Share this stereotype
+            </a>
+          </p>
+        )}
       </div>
       <div className={termsClass.join(' ')}>
         <div className="term termA">{termA}</div>
