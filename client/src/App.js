@@ -6,7 +6,7 @@ import Question from './Question';
 import './App.css';
 
 function App() {
-  const [round] = useState(1);
+  const [round, setRound] = useState(1);
   const [stereotypesCount, setStereotypesCount] = useState('...');
   const [answers, setAnswers] = useState([], 'answers');
 
@@ -52,6 +52,7 @@ function App() {
           round={round}
           setStereotypesCount={setStereotypesCount}
           setAnswers={setAnswers}
+          setRound={setRound}
         ></Question>
 
         <div className="answers">
