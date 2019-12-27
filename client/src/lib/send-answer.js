@@ -31,6 +31,7 @@ export default async function sendAnswer(
     if (json.error) {
       throw json.error;
     } else {
+      const { count, total } = json;
       setStereotypesCount(json.stats.stereotypes);
       setAnswers(answers => {
         return [
@@ -38,6 +39,7 @@ export default async function sendAnswer(
             round,
             couples,
             choice,
+            results: { count, total },
           },
           ...answers,
         ];

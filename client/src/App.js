@@ -56,7 +56,7 @@ function App() {
         ></Question>
 
         <div className="answers">
-          {answers.map(({ round, couples, choice }) => {
+          {answers.map(({ round, couples, choice, results }) => {
             const [couple1, couple2] = couples;
             return (
               <Line
@@ -66,6 +66,7 @@ function App() {
                 couple1={couple1}
                 couple2={couple2}
                 currentChoice={choice}
+                results={results}
               />
             );
           })}

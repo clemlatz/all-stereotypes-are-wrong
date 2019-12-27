@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Pie } from 'react-chartjs-2';
 
 import './Line.css';
 
@@ -8,6 +9,7 @@ export default function Line({
   couple1,
   couple2,
   currentChoice,
+  results,
   isLoading,
   onSideChoose,
   onSendAnswer,
@@ -37,6 +39,9 @@ export default function Line({
       encodeURI(twitterMessage) +
       '%23AllStereotypesAreWrong%0Ahttps://asaw.iwazaru.fr';
   }
+
+  const success = true;
+  const pieColor = success ? '#46BFBD' : '#F7464A';
 
   return (
     <div className={lineClass.join(' ')}>
@@ -79,7 +84,21 @@ export default function Line({
           </Fragment>
         )}
       </div>
-      <div className="right"></div>
+      <div className="right">
+        {type === 'answer' && (
+          <Pie
+            options={{ tooltips: { enabled: false } }}
+            data={{
+              datasets: [
+                {
+                  data: [results.count, results.total - results.count],
+                  backgroundColor: [pieColor, '#cccccc'],
+                },
+              ],
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 }
