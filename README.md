@@ -9,9 +9,11 @@ Play it: https://asaw.iwazaru.fr/
 
 ## Run using docker
 
+Attach MySQL database with `--env DB=mysql://user:pass@host/base` or with a `.env` file.
+
 ```console
-docker run -d -p 3300:8080 \
-  --env DB=mysql://user:pass@host/base \
+docker run -d -p 3400:8080 \
+  --env-file=.env \
   --restart=unless-stopped \
   --name asaw \
   iwazaru/all-stereotypes-are-wrong
