@@ -32,6 +32,8 @@ export default async function sendAnswer(
       throw json.error;
     } else {
       const { count, total } = json;
+      const percent = Math.floor((count / total) * 100);
+      const success = percent >= 50;
       setStereotypesCount(json.stats.stereotypes);
       setAnswers(answers => {
         return [
@@ -39,7 +41,7 @@ export default async function sendAnswer(
             round,
             couples,
             choice,
-            results: { count, total },
+            results: { count, total, percent, success },
           },
           ...answers,
         ];

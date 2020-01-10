@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
-import { Pie } from 'react-chartjs-2';
 
 import './Line.css';
+import AnswerStats from './AnswerStats';
+import termsFromCouples from './lib/terms-from-couples';
 
 export default function Line({
   round,
@@ -14,10 +15,7 @@ export default function Line({
   onSideChoose,
   onSendAnswer,
 }) {
-  const termA = couple1.firstTerm.en;
-  const termB = couple1.secondTerm.en;
-  const term1 = couple2.firstTerm.en;
-  const term2 = couple2.secondTerm.en;
+  const { termA, termB, term1, term2 } = termsFromCouples(couple1, couple2);
 
   let lineClass = ['line'];
   lineClass.push(type);
@@ -39,9 +37,6 @@ export default function Line({
       encodeURI(twitterMessage) +
       '%23AllStereotypesAreWrong%0Ahttps://asaw.iwazaru.fr';
   }
-
-  const success = true;
-  const pieColor = success ? '#46BFBD' : '#F7464A';
 
   return (
     <div className={lineClass.join(' ')}>
@@ -84,21 +79,11 @@ export default function Line({
           </Fragment>
         )}
       </div>
-      <div className="right">
-        {type === 'answer' && (
-          <Pie
-            options={{ tooltips: { enabled: false } }}
-            data={{
-              datasets: [
-                {
-                  data: [results.count, results.total - results.count],
-                  backgroundColor: [pieColor, '#cccccc'],
-                },
-              ],
-            }}
-          />
-        )}
-      </div>
+      {type === 'answer' ? (
+        <AnswerStats results={results} couples={{ couple1, couple2 }} />
+      ) : (
+        <div className="right" />
+      )}
     </div>
   );
 }
