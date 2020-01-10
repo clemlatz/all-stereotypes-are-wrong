@@ -8,7 +8,8 @@ export default async function sendAnswer(
   setIsLoading,
   setStereotypesCount,
   setAnswers,
-  setRound
+  setRound,
+  setScore
 ) {
   try {
     const [couple1, couple2] = couples;
@@ -31,10 +32,20 @@ export default async function sendAnswer(
     if (json.error) {
       throw json.error;
     } else {
-      const { count, total } = json;
+      // Get stats from server response and calculate percent
+      const { count, total, stats } = json;
       const percent = Math.floor((count / total) * 100);
+
+      // If user is successful (at least 50% of responses matches theirs),
+      // increase score
       const success = percent >= 50;
-      setStereotypesCount(json.stats.stereotypes);
+      success && setScore(score => score + 1);
+
+      // Update stereotypes count and increase round number
+      setStereotypesCount(stats.stereotypes);
+      setRound(round => round + 1);
+
+      // Add answer to the list
       setAnswers(answers => {
         return [
           {
@@ -46,7 +57,6 @@ export default async function sendAnswer(
           ...answers,
         ];
       });
-      setRound(round => round + 1);
     }
   } catch (error) {
     alert(`Error: ${error}`);

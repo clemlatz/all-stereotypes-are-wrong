@@ -10,6 +10,8 @@ function App() {
   const [stereotypesCount, setStereotypesCount] = useState('...');
   const [answers, setAnswers] = useState([], 'answers');
 
+  const [score, setScore] = useState(0);
+
   // Get stereotypescount count
   useEffect(() => {
     async function fetchStats() {
@@ -53,6 +55,7 @@ function App() {
           setStereotypesCount={setStereotypesCount}
           setAnswers={setAnswers}
           setRound={setRound}
+          setScore={setScore}
         ></Question>
 
         <div className="answers">

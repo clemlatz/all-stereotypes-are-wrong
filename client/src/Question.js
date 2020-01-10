@@ -11,6 +11,7 @@ export default function Question({
   setStereotypesCount,
   setAnswers,
   setRound,
+  setScore,
 }) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [currentChoice, setCurrentChoice] = useState(null);
@@ -53,7 +54,8 @@ export default function Question({
           setIsLoading,
           setStereotypesCount,
           setAnswers,
-          setRound
+          setRound,
+          setScore
         )
       }
     />
