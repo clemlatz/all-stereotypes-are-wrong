@@ -7,8 +7,9 @@ import './App.css';
 
 function App() {
   const [round, setRound] = useState(1);
+  const [lineNum, setLineNum] = useState(1);
   const [stereotypesCount, setStereotypesCount] = useState('...');
-  const [answers, setAnswers] = useState([], 'answers');
+  const [lines, setLines] = useState([], 'lines');
 
   const [score, setScore] = useState(0);
 
@@ -53,26 +54,36 @@ function App() {
         <Question
           round={round}
           setStereotypesCount={setStereotypesCount}
-          setAnswers={setAnswers}
           setRound={setRound}
+          setLineNum={setLineNum}
+          lineNum={lineNum}
+          setLines={setLines}
           setScore={setScore}
+          score={score}
         ></Question>
 
         <div className="answers">
-          {answers.map(({ round, couples, choice, results }) => {
-            const [couple1, couple2] = couples;
-            return (
-              <Line
-                key={round}
-                type="answer"
-                round={round}
-                couple1={couple1}
-                couple2={couple2}
-                currentChoice={choice}
-                results={results}
-              />
-            );
-          })}
+          {lines.map(
+            ({ lineNum, round, type, couples, choice, results, score }) => {
+              if (type === 'score') {
+                return <Line key={lineNum} type="score" score={score} />;
+              }
+
+              const [couple1, couple2] = couples;
+              return (
+                <Line
+                  key={lineNum}
+                  type="answer"
+                  round={round}
+                  couple1={couple1}
+                  couple2={couple2}
+                  currentChoice={choice}
+                  results={results}
+                  score={score}
+                />
+              );
+            }
+          )}
         </div>
       </div>
     </div>

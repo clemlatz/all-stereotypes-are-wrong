@@ -9,9 +9,12 @@ import './Question.css';
 export default function Question({
   round,
   setStereotypesCount,
-  setAnswers,
+  setLines,
   setRound,
+  setLineNum,
+  lineNum,
   setScore,
+  score,
 }) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [currentChoice, setCurrentChoice] = useState(null);
@@ -46,6 +49,7 @@ export default function Question({
       onSendAnswer={(association1, association2) =>
         sendAnswer(
           round,
+          lineNum,
           couples,
           association1,
           association2,
@@ -53,9 +57,11 @@ export default function Question({
           token,
           setIsLoading,
           setStereotypesCount,
-          setAnswers,
           setRound,
-          setScore
+          setLineNum,
+          setLines,
+          setScore,
+          score
         )
       }
     />

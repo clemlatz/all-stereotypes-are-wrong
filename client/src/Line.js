@@ -12,9 +12,18 @@ export default function Line({
   currentChoice,
   results,
   isLoading,
+  score,
   onSideChoose,
   onSendAnswer,
 }) {
+  if (type === 'score') {
+    return (
+      <div className="line score">
+        <div className="final-score">~ FINAL SCORE: {score}/10 ~</div>
+      </div>
+    );
+  }
+
   const { termA, termB, term1, term2 } = termsFromCouples(couple1, couple2);
 
   let lineClass = ['line'];

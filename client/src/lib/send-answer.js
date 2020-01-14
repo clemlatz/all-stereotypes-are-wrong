@@ -1,5 +1,6 @@
 export default async function sendAnswer(
   round,
+  lineNum,
   couples,
   association1,
   association2,
@@ -7,9 +8,11 @@ export default async function sendAnswer(
   token,
   setIsLoading,
   setStereotypesCount,
-  setAnswers,
   setRound,
-  setScore
+  setLineNum,
+  setLines,
+  setScore,
+  score
 ) {
   try {
     const [couple1, couple2] = couples;
@@ -39,24 +42,61 @@ export default async function sendAnswer(
       // If user is successful (at least 50% of responses matches theirs),
       // increase score
       const success = percent >= 50;
-      success && setScore(score => score + 1);
+      if (success) {
+        score = score + 1;
+        setScore(score);
+      }
 
       // Update stereotypes count and increase round number
       setStereotypesCount(stats.stereotypes);
-      setRound(round => round + 1);
+
+      // Increase line number
+      lineNum = lineNum + 1;
+      setLineNum(lineNum);
 
       // Add answer to the list
-      setAnswers(answers => {
+      setLines(lines => {
         return [
           {
             round,
+            lineNum,
+            type: 'answer',
             couples,
             choice,
             results: { count, total, percent, success },
           },
-          ...answers,
+          ...lines,
         ];
       });
+
+      // If this was the 10th round, add score line to answers list
+      // and reset round to 0
+      if (round === 10) {
+        // Increase line number
+        lineNum = lineNum + 1;
+        setLineNum(lineNum);
+
+        setLines(lines => {
+          return [
+            {
+              round,
+              lineNum,
+              type: 'score',
+              couples: {},
+              results: {},
+              score,
+            },
+            ...lines,
+          ];
+        });
+        setRound(1);
+        setScore(0);
+      }
+
+      // Else increase round
+      else {
+        setRound(round => round + 1);
+      }
     }
   } catch (error) {
     alert(`Error: ${error}`);

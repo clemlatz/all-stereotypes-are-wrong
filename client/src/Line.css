@@ -19,7 +19,8 @@
   margin: 0.35em 0;
 }
 
-.answer {
+.line.answer,
+.line.score {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
