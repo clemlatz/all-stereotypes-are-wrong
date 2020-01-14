@@ -1,18 +1,19 @@
 'use strict';
 
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const couples = require('./data/couples');
 const checkToken = require('./middlewares/check-token');
 const getCombinationId = require('./helpers/get-combination-id');
+const getStats = require('./helpers/get-stats');
 
 const { sequelize, Answer, Combination, Token } = require('./models');
+
 sequelize.sync();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static('public'));
 
 app.get('/couples', async function(request, response) {
@@ -25,12 +26,8 @@ app.get('/couples', async function(request, response) {
 });
 
 app.get('/stats', async function(request, response) {
-  const combinations = await Combination.findAll();
-  let total = 0;
-  for (let i = 0, c = combinations.length; i < c; i++) {
-    total += combinations[i].count;
-  }
-  response.json({ total });
+  const stats = await getStats();
+  response.json(stats);
 });
 
 app.post('/answer', checkToken, async function(request, response) {
@@ -71,9 +68,11 @@ app.post('/answer', checkToken, async function(request, response) {
       { where: { id: combination.id } }
     );
 
+    const stats = await getStats();
+
     response
       .status(200)
-      .json({ count: answer.count, total: combination.count });
+      .json({ count: answer.count, total: combination.count, stats });
   } catch (error) {
     response.status(500).json({ error });
   }

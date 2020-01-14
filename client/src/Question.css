@@ -1,0 +1,19 @@
+.question.loading {
+  opacity: 0.5;
+}
+
+/* CLICK ZONES */
+
+.question .zone {
+  height: 100%;
+  cursor: pointer;
+  position: absolute;
+  width: 50%;
+}
+
+.question .right-zone {
+  border-left: 1px solid black;
+  opacity: 0;
+  right: 0;
+  transition: 250ms;
+}
