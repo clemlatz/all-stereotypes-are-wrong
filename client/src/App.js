@@ -27,7 +27,9 @@ function App() {
     <div className="App">
       <div id="main">
         <div id="header">
-          <h1>All Stereotypes Are Wrong</h1>
+          <h1>
+            All Stereotypes Are Wrong <span className="version">3.0</span>
+          </h1>
           <p id="tagline">Choose the most common stereotype</p>
         </div>
 

@@ -40,6 +40,13 @@ h1 {
   text-transform: none;
 }
 
+h1 .version {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 0.25em;
+}
+
 #tagline {
   font-style: italic;
   margin-top: 30px;
