@@ -6,6 +6,9 @@
   "repository": "git@github.com:iwazaru/all-stereotypes-are-wrong.git",
   "author": "Clément Bourgoin <c@iwzr.fr>",
   "license": "MIT",
+  "engines": {
+    "node": "12"
+  },
   "scripts": {
     "install:server": "yarn --cwd \"./server\"",
     "install:client": "yarn --cwd \"./client\"",
