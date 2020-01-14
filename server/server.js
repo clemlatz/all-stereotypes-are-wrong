@@ -14,7 +14,7 @@ sequelize.sync();
 const port = process.env.PORT || 5000;
 const app = express();
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('../client/build'));
 
 app.get('/couples', async function(request, response) {
   const couple1 = couples.getRandom();
