@@ -7,15 +7,14 @@
   "author": "Clément Bourgoin <c@iwzr.fr>",
   "license": "MIT",
   "scripts": {
+    "install:server": "yarn --cwd \"./server\"",
+    "install:client": "yarn --cwd \"./client\"",
+    "postinstall": " yarn install:server && yarn install:client",
     "dev:client": "BROWSER=none yarn --cwd \"./client\" start",
     "dev:server": "yarn --cwd \"./server\" dev",
     "dev": "concurrently \"yarn dev:client\" \"yarn dev:server\""
   },
   "devDependencies": {
     "concurrently": "^5.0.0"
-  },
-  "dependencies": {
-    "chart.js": "^2.9.3",
-    "react-chartjs-2": "^2.8.0"
   }
 }
