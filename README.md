@@ -30,6 +30,15 @@ docker run -d -p 3400:8080 \
 DB=mysql://user:pass@host:port/base yarn dev
 ```
 
+## Build docker image
+
+```console
+docker build \
+  -t iwazaru/all-stereotypes-are-wrong:latest \
+  -t iwazaru/all-stereotypes-are-wrong:3.0.0 \
+  .
+```
+
 ## Todo
 
 - French version
