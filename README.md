@@ -46,6 +46,10 @@ docker build \
 
 ## Changelog
 
+### 3.0.0 (2020-01-16)
+
+- Rewrote front-end using React
+
 ### 2.0.1 (2019-11-21)
 
 - Fixed displaying statistics when answering
