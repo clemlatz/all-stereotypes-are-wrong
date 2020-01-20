@@ -25,6 +25,14 @@ function App() {
     fetchStats();
   }, []);
 
+  const choosePageClasses = ['page', 'choose-page'];
+  const browsePageClasses = ['page', 'browse-page'];
+  if (currentPage === 'choose') {
+    choosePageClasses.push('selected');
+  } else {
+    browsePageClasses.push('selected');
+  }
+
   return (
     <div className="App">
       <div id="main">
@@ -57,41 +65,48 @@ function App() {
 
         <div id="stats">{stereotypesCount} stereotypes so far</div>
 
-        {/* Current line */}
-        <Question
-          round={round}
-          setStereotypesCount={setStereotypesCount}
-          setRound={setRound}
-          setLineNum={setLineNum}
-          lineNum={lineNum}
-          setLines={setLines}
-          setScore={setScore}
-          score={score}
-        ></Question>
+        {/* Choose page */}
+        <div className={choosePageClasses.join(' ')}>
+          {/* Current line */}
+          <Question
+            round={round}
+            setStereotypesCount={setStereotypesCount}
+            setRound={setRound}
+            setLineNum={setLineNum}
+            lineNum={lineNum}
+            setLines={setLines}
+            setScore={setScore}
+            score={score}
+          ></Question>
 
-        <div className="answers">
-          {lines.map(
-            ({ lineNum, round, type, couples, choice, results, score }) => {
-              if (type === 'score') {
-                return <Line key={lineNum} type="score" score={score} />;
+          {/* Answers list */}
+          <div className="answers">
+            {lines.map(
+              ({ lineNum, round, type, couples, choice, results, score }) => {
+                if (type === 'score') {
+                  return <Line key={lineNum} type="score" score={score} />;
+                }
+
+                const [couple1, couple2] = couples;
+                return (
+                  <Line
+                    key={lineNum}
+                    type="answer"
+                    round={round}
+                    couple1={couple1}
+                    couple2={couple2}
+                    currentChoice={choice}
+                    results={results}
+                    score={score}
+                  />
+                );
               }
-
-              const [couple1, couple2] = couples;
-              return (
-                <Line
-                  key={lineNum}
-                  type="answer"
-                  round={round}
-                  couple1={couple1}
-                  couple2={couple2}
-                  currentChoice={choice}
-                  results={results}
-                  score={score}
-                />
-              );
-            }
-          )}
+            )}
+          </div>
         </div>
+
+        {/* Browse page */}
+        <div className={browsePageClasses.join(' ')}>Browse stereotypes</div>
       </div>
     </div>
   );
