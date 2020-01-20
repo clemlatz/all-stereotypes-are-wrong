@@ -1,0 +1,19 @@
+.NavMenu {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-transform: none;
+}
+
+.NavMenu .entry {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.NavMenu .entry:hover {
+  color: #369;
+}
+
+.NavMenu .entry.selected,
+.NavMenu .entry:hover {
+  border-bottom: 1px dashed black;
+}
