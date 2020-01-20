@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Line from './Line';
 import Question from './Question';
+import NavMenu from './NavMenu';
 
 import './App.css';
 
@@ -10,6 +11,7 @@ function App() {
   const [lineNum, setLineNum] = useState(1);
   const [stereotypesCount, setStereotypesCount] = useState('...');
   const [lines, setLines] = useState([], 'lines');
+  const [currentPage, setCurrentPage] = useState('choose');
 
   const [score, setScore] = useState(0);
 
@@ -30,7 +32,10 @@ function App() {
           <h1>
             All Stereotypes Are Wrong <span className="version">3.0</span>
           </h1>
-          <p id="tagline">Choose the most common stereotype</p>
+          <NavMenu
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          ></NavMenu>
         </div>
 
         <div id="social">
