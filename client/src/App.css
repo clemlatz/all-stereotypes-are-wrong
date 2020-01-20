@@ -46,6 +46,26 @@ h1 .version {
   font-size: 0.25em;
 }
 
+/* PAGES */
+
+.page {
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%);
+  width: 718px;
+  transition: left 250ms, transform 250ms;
+}
+
+.choose-page:not(.selected) {
+  left: 0;
+  transform: translate(-100%);
+}
+
+.browse-page:not(.selected) {
+  left: 100%;
+  transform: translate(100%);
+}
+
 @media (min-width: 768px) {
   body {
     font-size: 16px;
