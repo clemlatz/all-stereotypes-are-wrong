@@ -20,13 +20,13 @@ export default function NavMenu({ currentPage, setCurrentPage }) {
       >
         Choose the most common stereotype
       </span>{' '}
-      or{' '}
+      {/* or{' '}
       <span
         onClick={() => setCurrentPage('browse')}
         className={browseClasses.join(' ')}
       >
         browse stereotypes
-      </span>
+  </span>*/}
     </nav>
   );
 }
