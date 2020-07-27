@@ -35,7 +35,7 @@ DB=mysql://user:pass@host:port/base yarn dev
 ```console
 docker build \
   -t iwazaru/all-stereotypes-are-wrong:latest \
-  -t iwazaru/all-stereotypes-are-wrong:3.0.1 \
+  -t iwazaru/all-stereotypes-are-wrong:3.0.2 \
   .
 ```
 
@@ -45,6 +45,10 @@ docker build \
 - Don't ask the same question twice
 
 ## Changelog
+
+### 3.0.2 (2020-07-27)
+
+- Upgrade dependencies to fix lodash vulnerability
 
 ### 3.0.1 (2020-06-16)
 
