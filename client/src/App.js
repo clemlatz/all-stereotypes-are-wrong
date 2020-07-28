@@ -5,6 +5,7 @@ import Question from './Question';
 import NavMenu from './NavMenu';
 
 import './App.css';
+import BrowsePage from './lib/BrowsePage';
 
 function App() {
   const [round, setRound] = useState(1);
@@ -106,7 +107,7 @@ function App() {
         </div>
 
         {/* Browse page */}
-        <div className={browsePageClasses.join(' ')}>Browse stereotypes</div>
+        <BrowsePage browsePageClasses={browsePageClasses} />
       </div>
     </div>
   );
