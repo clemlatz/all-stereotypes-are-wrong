@@ -45,6 +45,9 @@ CoupleManager.prototype = {
       }
     }
     return false;
+  },
+  getAll: function() {
+    return this.couples;
   }
 }
 const couples = new CoupleManager();
