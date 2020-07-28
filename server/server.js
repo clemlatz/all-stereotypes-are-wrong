@@ -16,6 +16,8 @@ const app = express();
 app.use(express.json());
 app.use(express.static('../client/build'));
 
+/** CHOOSE API */
+
 app.get('/couples', async function(request, response) {
   const couple1 = couples.getRandom();
   const couple2 = couples.getRandom(couple1);
@@ -77,6 +79,13 @@ app.post('/answer', checkToken, async function(request, response) {
     response.status(500).json({ error });
   }
 });
+
+/** BROWSE API */
+
+app.get('/browse/couples', async function(request, response) {
+  response.json({ couples: couples.getAll() });
+});
+
 
 app.listen(port, function() {
   process.stdout.write(`ASAW server is listening on port ${port}\n`);
