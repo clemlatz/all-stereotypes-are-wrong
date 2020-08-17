@@ -5,7 +5,7 @@ import Question from './Question';
 import NavMenu from './NavMenu';
 
 import './App.css';
-import BrowsePage from './lib/BrowsePage';
+import BrowsePage from './BrowsePage';
 
 function App() {
   const [round, setRound] = useState(1);
