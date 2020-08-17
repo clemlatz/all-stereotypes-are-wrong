@@ -3,14 +3,14 @@ import Select from 'react-select';
 
 import './CoupleSelector.css';
 
-export default function CoupleSelector({ couples }) {
+export default function CoupleSelector({ couples, onSelect }) {
   const options = couples.map((couple) => ({
     value: couple.id,
     label: `${couple.firstTerm.en} / ${couple.secondTerm.en}`,
   }));
   return (
     <div className="CoupleSelector">
-      <Select options={options} />
+      <Select options={options} onChange={onSelect} />
     </div>
   );
 }
