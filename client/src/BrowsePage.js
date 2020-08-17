@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import CoupleSelector from './CoupleSelector';
 
 export default function BrowsePage({ browsePageClasses }) {
   const [couples, setCouples] = useState([]);
@@ -15,7 +16,8 @@ export default function BrowsePage({ browsePageClasses }) {
 
   return (
     <div className={browsePageClasses.join(' ')}>
-      {couples.map(couple => <p>{couple.id}</p>)}
+      <CoupleSelector couples={couples} /> are{' '}
+      <CoupleSelector couples={couples} />
     </div>
   );
 }
