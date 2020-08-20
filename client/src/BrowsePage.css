@@ -1,3 +1,11 @@
 .browse-page {
   width: 320px;
 }
+
+.browse-page .answer.right {
+  color: #46BFBD;
+}
+
+.browse-page .answer.wrong {
+  color: #F7464A;
+}
