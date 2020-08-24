@@ -1,0 +1,14 @@
+.Camembert {
+  height: 50px;
+  margin: auto;
+  width: 50px;
+}
+
+@media (min-width: 768px) {
+  .Camembert {
+    float: left;
+    height: 70px;
+    margin-right: 10px;
+    width: 70px;
+  }
+}
