@@ -1,7 +1,7 @@
 import React from 'react';
-import { Pie } from 'react-chartjs-2';
 
 import termsFromCouples from './lib/terms-from-couples';
+import Camembert from './Camembert';
 
 export default function AnswerStats({ results, couples }) {
   const { count, total, percent, success } = results;
@@ -12,29 +12,11 @@ export default function AnswerStats({ results, couples }) {
   );
   const googleTruth = `https://www.google.com/trends/explore#q=${termA} ${term1}, ${termB} ${term2}, ${termA} ${term2}, ${termB} ${term1}`;
 
-  const pieColor = success ? '#46BFBD' : '#F7464A';
   const rightClass = success ? 'right correct' : 'right wrong';
 
   return (
     <div className={rightClass}>
-      <div className="pie-container">
-        <Pie
-          options={{
-            tooltips: { enabled: false },
-            legends: { enabled: false },
-          }}
-          width={70}
-          height={70}
-          data={{
-            datasets: [
-              {
-                data: [count, total - count],
-                backgroundColor: [pieColor, '#cccccc'],
-              },
-            ],
-          }}
-        />
-      </div>
+      <Camembert counts={[count, total - count]} otherColor="#cccccc" />
       <div>
         <strong>
           {percent}% of {total}
