@@ -16,7 +16,7 @@ docker run -d -p 3400:8080 \
   --env-file=.env \
   --restart=unless-stopped \
   --name asaw \
-  iwazaru/all-stereotypes-are-wrong
+  iwazaru/all-stereotypes-are-wrong:3.1.0
 ```
 
 ## Run in dev mode
@@ -35,7 +35,7 @@ DB=mysql://user:pass@host:port/base yarn dev
 ```console
 docker build \
   -t iwazaru/all-stereotypes-are-wrong:latest \
-  -t iwazaru/all-stereotypes-are-wrong:3.0.2 \
+  -t iwazaru/all-stereotypes-are-wrong:3.1.0 \
   .
 ```
 
@@ -45,6 +45,10 @@ docker build \
 - Don't ask the same question twice
 
 ## Changelog
+
+### 3.1.0 (2020-08-24)
+
+- Add stereotype browser page
 
 ### 3.0.2 (2020-07-27)
 

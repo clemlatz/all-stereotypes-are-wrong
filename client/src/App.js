@@ -22,7 +22,7 @@ function App() {
       <div id="main">
         <div id="header">
           <h1>
-            All Stereotypes Are Wrong <span className="version">3.0.2</span>
+            All Stereotypes Are Wrong <span className="version">3.1.0</span>
           </h1>
           <NavMenu
             currentPage={currentPage}
@@ -49,7 +49,10 @@ function App() {
 
         <div id="stats">{stereotypesCount} stereotypes so far</div>
 
-        <ChoosePage choosePageClasses={choosePageClasses} setStereotypesCount={setStereotypesCount} />
+        <ChoosePage
+          choosePageClasses={choosePageClasses}
+          setStereotypesCount={setStereotypesCount}
+        />
         <BrowsePage browsePageClasses={browsePageClasses} />
       </div>
     </div>
