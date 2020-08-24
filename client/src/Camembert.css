@@ -1,11 +1,17 @@
-.Camembert {
+.choose-page .Camembert {
   height: 50px;
   margin: auto;
   width: 50px;
 }
 
+.browse-page .Camembert {
+  height: 150px;
+  margin: auto;
+  width: 150px;
+}
+
 @media (min-width: 768px) {
-  .Camembert {
+  .choose-page .Camembert {
     float: left;
     height: 70px;
     margin-right: 10px;
