@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import CoupleSelector from './CoupleSelector';
 import BrowseStats from './BrowseStats';
+import Camembert from './Camembert';
 
 import './BrowsePage.css';
 
@@ -29,7 +30,7 @@ export default function BrowsePage({ browsePageClasses }) {
       selectedCouple2 === null ||
       selectedCouple1 === selectedCouple2
     ) {
-      setStats(null)
+      setStats(null);
       return;
     }
 
@@ -59,8 +60,14 @@ export default function BrowsePage({ browsePageClasses }) {
         <div className="stats">
           <p>{stats.total} answers</p>
           {stats.answers.map(({ answer, count }) => (
-            <BrowseStats key={answer} answer={answer} count={count} total={stats.total} />
+            <BrowseStats
+              key={answer}
+              answer={answer}
+              count={count}
+              total={stats.total}
+            />
           ))}
+          <Camembert counts={stats.answers.map((answer) => answer.count)} />
         </div>
       ) : null}
     </div>
