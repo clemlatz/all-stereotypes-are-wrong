@@ -30,7 +30,16 @@ docker run -d -p 3400:8080 \
 DB=mysql://user:pass@host:port/base yarn dev
 ```
 
-## Build docker image
+## Release a new version
+
+1. Update version number & changelog in README.md
+2. Update version number in package.json
+3. Update version number in client/package.json
+4. Update version number in server/package.json
+5. Update version number in App.js
+6. Commit version bump & changelog update
+7. Tag last commit with new version
+8. Build docker image with new version tag:
 
 ```console
 docker build \
@@ -38,6 +47,15 @@ docker build \
   -t iwazaru/all-stereotypes-are-wrong:3.1.0 \
   .
 ```
+
+9. Push docker image with new tags:
+
+```console
+docker push iwazaru/all-stereotypes-are-wrong:latest
+docker push iwazaru/all-stereotypes-are-wrong:3.1.1
+```
+
+10. On server, pull new image and restart
 
 ## Todo
 
