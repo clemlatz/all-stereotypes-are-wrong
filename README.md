@@ -16,7 +16,7 @@ docker run -d -p 3400:8080 \
   --env-file=.env \
   --restart=unless-stopped \
   --name asaw \
-  iwazaru/all-stereotypes-are-wrong:3.1.0
+  iwazaru/all-stereotypes-are-wrong:3.1.1
 ```
 
 ## Run in dev mode
@@ -44,7 +44,7 @@ DB=mysql://user:pass@host:port/base yarn dev
 ```console
 docker build \
   -t iwazaru/all-stereotypes-are-wrong:latest \
-  -t iwazaru/all-stereotypes-are-wrong:3.1.0 \
+  -t iwazaru/all-stereotypes-are-wrong:3.1.1 \
   .
 ```
 
@@ -63,6 +63,10 @@ docker push iwazaru/all-stereotypes-are-wrong:3.1.1
 - Don't ask the same question twice
 
 ## Changelog
+
+### 3.1.1 (2021-04-06)
+
+- Upgrade dependencies to fix multiple security vulnerabilities
 
 ### 3.1.0 (2020-08-24)
 

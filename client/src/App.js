@@ -22,7 +22,7 @@ function App() {
       <div id="main">
         <div id="header">
           <h1>
-            All Stereotypes Are Wrong <span className="version">3.1.0</span>
+            All Stereotypes Are Wrong <span className="version">3.1.1</span>
           </h1>
           <NavMenu
             currentPage={currentPage}
