@@ -33,7 +33,5 @@
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "2.x"
   },
-  "dependencies": {
-    "react-select": "^3.1.0"
-  }
+  "dependencies": {}
 }
