@@ -1,4 +1,4 @@
-const statsController = require('../../../server/controllers/stats');
+const statsController = require('../../server/controllers/stats');
 
 exports.handler = async function () {
   let responseContent;
