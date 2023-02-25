@@ -7,7 +7,7 @@
   "author": "Clément Bourgoin <c@iwzr.fr>",
   "license": "MIT",
   "engines": {
-    "node": "14.16"
+    "node": "16"
   },
   "scripts": {
     "install:server": "yarn --cwd \"./server\"",
