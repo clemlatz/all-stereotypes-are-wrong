@@ -6,6 +6,7 @@ const couples = require('./data/couples');
 const checkToken = require('./middlewares/check-token');
 const getCombinationId = require('./helpers/get-combination-id');
 const getStats = require('./helpers/get-stats');
+const statsController = require('./controllers/stats');
 
 const { sequelize, Answer, Combination, Token } = require('./models');
 
@@ -46,10 +47,7 @@ app.get('/couples', async function (request, response) {
   response.json({ couples: [couple1, couple2], token: token.token });
 });
 
-app.get('/stats', async function (request, response) {
-  const stats = await getStats();
-  response.json(stats);
-});
+app.get('/stats', statsController);
 
 app.post('/answer', checkToken, async function (request, response) {
   const association1 = request.body.association1.split(',').sort().join(',');
