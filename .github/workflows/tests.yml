@@ -1,24 +1,33 @@
-name: Playwright Tests
+name: Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
 jobs:
-  test:
+  tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
-        node-version: lts/*
+        node-version: 18
+
     - name: Install dependencies
-      run: npm install -g yarn && yarn
+      run: yarn
+
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
+
+    - name: Build
+      run: yarn build
+
     - name: Run Playwright tests
       run: yarn playwright test
+      env:
+        PORT: 3001
+        DB: ${{ secrets.ASAW_DATABASE_URL }}
+
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
