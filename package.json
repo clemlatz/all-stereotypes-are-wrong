@@ -18,7 +18,8 @@
     "dev": "concurrently \"yarn dev:client\" \"yarn dev:server\"",
     "build": "yarn --cwd \"./client\" build",
     "start": "yarn --cwd \"./server\" start",
-    "lint": "eslint client/src"
+    "lint": "eslint client/src",
+    "test": "yarn playwright test"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
